@@ -31,6 +31,10 @@ app.get("/login", (req, res) => {
   res.render("login.ejs");
 });
 
+app.get("/single-product", (req, res) => {
+  res.render("single-product.ejs");
+});
+
 app.listen(porta, () => {
   console.log(`Servidor funcionando na porta: ${porta}`);
 });

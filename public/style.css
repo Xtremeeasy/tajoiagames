@@ -1103,3 +1103,14 @@ input[type=search] {
   -webkit-user-select: none;
   user-select: none;
 }
+
+.product-select .active {
+  background: #F22E52;
+  border: solid #F22E52;
+  color: white;
+}
+
+.product-img {
+  height: 444px;
+  object-position: center;
+}
