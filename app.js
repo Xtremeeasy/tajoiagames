@@ -13,18 +13,19 @@ connection.connect((err) => {
   console.log("Conectado ao banco de dados MySQL!");
 });
 
-//pegando jogos
-var jogos = selectJogos();
-
-// Fechando a conexão
-connection.end();
-
 //arquivos estáticos
 app.use(express.static("public"));
 
 //rotas
 app.get("/", function (req, res) {
-  res.render("index.ejs");
+  connection.query('SELECT * FROM jogos', (err, results) => {
+    if (err) {
+      console.error('Erro ao realizar a consulta:', err);
+      return;
+    }
+    var jogos = results;
+    res.render("index.ejs", {jogos:jogos});
+  });
 });
 
 app.get("/login", (req, res) => {
