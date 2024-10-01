@@ -24,7 +24,7 @@ app.get("/", function (req, res) {
       return;
     }
     var jogos = results;
-    res.render("index.ejs", {jogos:jogos});
+    res.render("index.ejs", { jogos: jogos });
   });
 });
 

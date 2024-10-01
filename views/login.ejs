@@ -1,227 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <%- include('includes/head.ejs') -%>
+<%- include('includes/head.ejs') -%>
 
   <body style="background-color: #070819">
     <%- include('includes/header.ejs') -%>
 
-    <section class="login-tabs padding-large">
-      <div class="container my-5 py-5">
-        <div class="row">
-          <div class="tabs-listing">
-            <nav>
-              <div
-                class="nav nav-tabs d-flex justify-content-center border-dark-subtle mb-3"
-                id="nav-tab"
-                role="tablist"
-              >
-                <button
-                  class="login-option nav-link mx-3 fs-4 border-bottom border-dark-subtle border-0 text-uppercase active fw-bold"
-                  id="nav-sign-in-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#nav-sign-in"
-                  type="button"
-                  role="tab"
-                  aria-controls="nav-sign-in"
-                  aria-selected="true"
-                >
-                  LogIn
-                </button>
-                <button
-                  class="login-option nav-link mx-3 fs-4 border-bottom border-dark-subtle border-0 text-uppercase fw-bold"
-                  id="nav-register-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#nav-register"
-                  type="button"
-                  role="tab"
-                  aria-controls="nav-register"
-                  aria-selected="false"
-                  tabindex="-1"
-                >
-                  Cadastrar
-                </button>
-              </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-              <div
-                class="tab-pane fade active show"
-                id="nav-sign-in"
-                role="tabpanel"
-                aria-labelledby="nav-sign-in-tab"
-              >
-                <div class="col-lg-8 offset-lg-2 mt-5">
-                  <p class="mb-0 fs-5">Entre com outra conta</p>
-                  <hr class="my-1" />
-                  <div class="row mt-4 mb-5">
-                    <div class="d-grid col-md-6 my-2">
-                      <a
-                        href="#"
-                        class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
-                      >
-                        <div class="d-flex flex-wrap justify-content-center">
-                          <iconify-icon
-                            icon="ion:logo-google"
-                            class="signup-social-icon me-2"
-                          ></iconify-icon>
-                          <p class="mb-0">Google</p>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="d-grid col-md-6 my-2">
-                      <a
-                        href="#"
-                        class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
-                      >
-                        <div class="d-flex flex-wrap justify-content-center">
-                          <iconify-icon
-                            icon="ion:logo-facebook"
-                            class="signup-social-icon me-2"
-                          ></iconify-icon>
-                          <p class="mb-0">Facebook</p>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-
-                  <p class="mb-0 fs-5">Entre com seu Email</p>
-                  <hr class="my-1" />
-
-                  <form id="form1" class="form-group flex-wrap">
-                    <div class="form-input col-lg-12 my-4">
-                      <input
-                        type="text"
-                        id="exampleInputEmail1"
-                        name="email"
-                        placeholder="Digite seu endereço de Email"
-                        class="form-control mb-3 p-4"
-                      />
-                      <input
-                        type="password"
-                        id="inputPassword1"
-                        placeholder="Digite sua Senha"
-                        class="form-control mb-3 p-4"
-                        aria-describedby="passwordHelpBlock"
-                      />
-
-                      <label
-                        class="py-3 d-flex flex-wrap justify-content-between"
-                      >
-                        <div class="checkbox-wrapper-1">
-                          <input
-                            id="example-1"
-                            type="checkbox"
-                            required=""
-                            class="d-inline substituted"
-                            aria-hidden="true"
-                          />
-                          <label class="label-body fs-5" for="example-1"
-                            >Salvar Login</label
-                          >
-                        </div>
-
-                        <div id="passwordHelpBlock" class="form-text">
-                          <a href="#" class="text-primary fw-bold fs-5">
-                            Esqueceu a Senha?</a
-                          >
-                        </div>
-                      </label>
-                      <div class="d-grid my-3">
-                        <a href="#" class="btn btn-dark btn-lg rounded-1"
-                          >Entrar</a
-                        >
-                      </div>
-                    </div>
-                  </form>
+      <section class="login-tabs padding-large mb-5">
+        <div class="container my-5 py-5">
+          <div class="row">
+            <div class="tabs-listing">
+              <nav>
+                <div class="nav nav-tabs d-flex justify-content-center border-dark-subtle mb-3" id="nav-tab"
+                  role="tablist">
+                  <button
+                    class="login-option nav-link mx-3 fs-4 border-bottom border-dark-subtle border-0 text-uppercase active fw-bold"
+                    id="nav-sign-in-tab" data-bs-toggle="tab" data-bs-target="#nav-sign-in" type="button" role="tab"
+                    aria-controls="nav-sign-in" aria-selected="true">
+                    LogIn
+                  </button>
+                  <button
+                    class="login-option nav-link mx-3 fs-4 border-bottom border-dark-subtle border-0 text-uppercase fw-bold"
+                    id="nav-register-tab" data-bs-toggle="tab" data-bs-target="#nav-register" type="button" role="tab"
+                    aria-controls="nav-register" aria-selected="false" tabindex="-1">
+                    Cadastrar
+                  </button>
                 </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="nav-register"
-                role="tabpanel"
-                aria-labelledby="nav-register-tab"
-              >
-                <div class="col-lg-8 offset-lg-2 mt-5">
-                  <p class="mb-0 fs-5">Cadastre-se com outra conta</p>
-                  <hr class="my-1" />
-                  <div class="row mt-4 mb-5">
-                    <div class="d-grid col-md-6 my-2">
-                      <a
-                        href="#"
-                        class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
-                      >
-                        <div class="d-flex flex-wrap justify-content-center">
-                          <iconify-icon
-                            icon="ion:logo-google"
-                            class="signup-social-icon me-2"
-                          ></iconify-icon>
-                          <p class="mb-0">Google</p>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="d-grid col-md-6 my-2">
-                      <a
-                        href="#"
-                        class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1"
-                      >
-                        <div class="d-flex flex-wrap justify-content-center">
-                          <iconify-icon
-                            icon="ion:logo-facebook"
-                            class="signup-social-icon me-2"
-                          ></iconify-icon>
-                          <p class="mb-0">Facebook</p>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-
-                  <p class="mb-0 fs-5">Cadastre-se com seu Email</p>
-                  <hr class="my-1" />
-
-                  <form id="form1" class="form-group flex-wrap">
-                    <div class="form-input col-lg-12 my-4">
-                      <input
-                        type="text"
-                        id="exampleInputName"
-                        name="email"
-                        placeholder="Nome Completo"
-                        class="form-control mb-3 p-4"
-                      />
-                      <input
-                        type="text"
-                        id="exampleInputEmail1"
-                        name="email"
-                        placeholder="Endereço de Email"
-                        class="form-control mb-3 p-4"
-                      />
-                      <input
-                        type="password"
-                        id="inputPassword1"
-                        placeholder="Crie sua Senha"
-                        class="form-control mb-3 p-4"
-                        aria-describedby="passwordHelpBlock"
-                      />
-                      <input
-                        type="password"
-                        id="inputPassword2"
-                        placeholder="Digite a senha novamente"
-                        class="form-control mb-3 p-4"
-                        aria-describedby="passwordHelpBlock"
-                      />
-                      <div class="d-grid my-5">
-                        <a href="#" class="btn btn-dark btn-lg rounded-1"
-                          >Cadastrar</a
-                        >
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel"
+                  aria-labelledby="nav-sign-in-tab">
+                  <div class="col-lg-8 offset-lg-2 mt-5">
+                    <p class="mb-0 fs-5">Entre com outra conta</p>
+                    <hr class="my-1" />
+                    <div class="row mt-4 mb-5">
+                      <div class="d-grid col-md-6 my-2">
+                        <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                          <div class="d-flex flex-wrap justify-content-center">
+                            <iconify-icon icon="ion:logo-google" class="signup-social-icon me-2"></iconify-icon>
+                            <p class="mb-0">Google</p>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="d-grid col-md-6 my-2">
+                        <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                          <div class="d-flex flex-wrap justify-content-center">
+                            <iconify-icon icon="ion:logo-facebook" class="signup-social-icon me-2"></iconify-icon>
+                            <p class="mb-0">Facebook</p>
+                          </div>
+                        </a>
                       </div>
                     </div>
-                  </form>
+
+                    <p class="mb-0 fs-5">Entre com seu Email</p>
+                    <hr class="my-1" />
+
+                    <form id="form1" class="form-group flex-wrap">
+                      <div class="form-input col-lg-12 my-4">
+                        <input type="text" id="exampleInputEmail1" name="email"
+                          placeholder="Digite seu endereço de Email" class="form-control mb-3 p-4" />
+                        <input type="password" id="inputPassword1" placeholder="Digite sua Senha"
+                          class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" />
+
+                        <label class="py-3 d-flex flex-wrap justify-content-between">
+                          <div class="checkbox-wrapper-1">
+                            <input id="example-1" type="checkbox" required="" class="d-inline substituted"
+                              aria-hidden="true" />
+                            <label class="label-body fs-5" for="example-1">Salvar Login</label>
+                          </div>
+
+                          <div id="passwordHelpBlock" class="form-text">
+                            <a href="#" class="text-primary fw-bold fs-5">
+                              Esqueceu a Senha?</a>
+                          </div>
+                        </label>
+                        <div class="d-grid my-3">
+                          <a href="#" class="btn btn-dark btn-lg rounded-1">Entrar</a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab">
+                  <div class="col-lg-8 offset-lg-2 mt-5">
+                    <p class="mb-0 fs-5">Cadastre-se com outra conta</p>
+                    <hr class="my-1" />
+                    <div class="row mt-4 mb-5">
+                      <div class="d-grid col-md-6 my-2">
+                        <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                          <div class="d-flex flex-wrap justify-content-center">
+                            <iconify-icon icon="ion:logo-google" class="signup-social-icon me-2"></iconify-icon>
+                            <p class="mb-0">Google</p>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="d-grid col-md-6 my-2">
+                        <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                          <div class="d-flex flex-wrap justify-content-center">
+                            <iconify-icon icon="ion:logo-facebook" class="signup-social-icon me-2"></iconify-icon>
+                            <p class="mb-0">Facebook</p>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+
+                    <p class="mb-0 fs-5">Cadastre-se com seu Email</p>
+                    <hr class="my-1" />
+
+                    <form id="form1" class="form-group flex-wrap">
+                      <div class="form-input col-lg-12 my-4">
+                        <input type="text" id="exampleInputName" name="email" placeholder="Nome Completo"
+                          class="form-control mb-3 p-4" />
+                        <input type="text" id="exampleInputEmail1" name="email" placeholder="Endereço de Email"
+                          class="form-control mb-3 p-4" />
+                        <input type="password" id="inputPassword1" placeholder="Crie sua Senha"
+                          class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" />
+                        <input type="password" id="inputPassword2" placeholder="Digite a senha novamente"
+                          class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" />
+                        <div class="d-grid my-5">
+                          <a href="#" class="btn btn-dark btn-lg rounded-1">Cadastrar</a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <%- include('includes/footer.ejs') -%>
+      <%- include('includes/footer.ejs') -%>
   </body>
+
 </html>
