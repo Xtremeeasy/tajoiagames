@@ -1,0 +1,405 @@
+<section id="banner" class="banner-background">
+  <div class="container">
+    <div class="swiper main-swiper">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide py-5">
+          <div class="row banner-content align-items-center">
+            <div class="img-wrapper col-md-5">
+              <img src="images/game-1.png" class="img-fluid borda">
+            </div>
+            <div class="content-wrapper col-md-7 p-5 mb-5">
+              <h2 class="banner-title display-1 fw-normal">Os melhores jogos<span class="banner-color"> você
+                  encontra aqui!</span>
+              </h2>
+              <a href="javascript:void(0)"
+                class="btn btn-outline-danger btn-lg text-uppercase fs-4 rounded-1 banner-color">
+                Compre Agora
+                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                  <use xlink:href="#arrow-right"></use>
+                </svg></a>
+            </div>
+
+          </div>
+        </div>
+        <div class="swiper-slide py-5">
+          <div class="row banner-content align-items-center">
+            <div class="img-wrapper col-md-5">
+              <img src="images/game-2.png" class=" borda" style="width: 100%; margin-top: 10%; margin-left: 10%;">
+            </div>
+            <div class="content-wrapper col-md-7 p-5 mb-5">
+              <h2 class="banner-title display-1 fw-normal">Loja 100%<br><span class="banner-color">Oficial &
+                  Segura!</span>
+              </h2>
+              <a href="javascript:void(0)"
+                class="btn btn-outline-danger btn-lg text-uppercase fs-4 rounded-1 banner-color">
+                Venha Conferir
+                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                  <use xlink:href="#arrow-right"></use>
+                </svg></a>
+            </div>
+
+          </div>
+        </div>
+        <div class="swiper-slide py-5">
+          <div class="row banner-content align-items-center">
+            <div class="img-wrapper col-md-5">
+              <img src="images/game-3.png" class="img borda" style="width: 130%; margin-top: 20%;">
+            </div>
+            <div class="content-wrapper col-md-7 p-5 mb-5" style="margin-top: 10%;">
+              <h2 class="banner-title display-1 fw-normal">Jogos grátis<br><span class="banner-color">Venha
+                  conferir!</span>
+              </h2>
+              <a href="javascript:void(0)"
+                class="btn btn-outline-danger btn-lg text-uppercase fs-4 rounded-1 banner-color">
+                Resgate Agora
+                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                  <use xlink:href="#arrow-right"></use>
+                </svg></a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-pagination mb-5"></div>
+
+    </div>
+  </div>
+</section>
+
+<section id="categories">
+  <div class="container my-3 py-5">
+    <div class="row my-5">
+      <div class="col text-center">
+        <a href="javascript:void(0)" class="categories-item">
+          <iconify-icon class="category-icon" icon="ph:android-logo-bold"></iconify-icon>
+          <h5>Celular</h5>
+        </a>
+      </div>
+      <div class="col text-center">
+        <a href="javascript:void(0)" class="categories-item">
+          <iconify-icon class="category-icon" icon="ph:virtual-reality"></iconify-icon>
+          <h5>Realidade Virtual</h5>
+        </a>
+      </div>
+      <div class="col text-center">
+        <a href="javascript:void(0)" class="categories-item">
+          <iconify-icon class="category-icon" icon="ph:user-plus-bold"></iconify-icon>
+          <h5>Multiplayer</h5>
+        </a>
+      </div>
+      <div class="col text-center">
+        <a href="javascript:void(0)" class="categories-item">
+          <iconify-icon class="category-icon" icon="mdi:steam"></iconify-icon>
+          <h5>Steam / PC</h5>
+        </a>
+      </div>
+      <div class="col text-center">
+        <a href="javascript:void(0)" class="categories-item">
+          <iconify-icon class="category-icon" icon="bi:controller"></iconify-icon>
+          <h5>Consoles</h5>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="clothing" class="my-5 overflow-hidden">
+  <div class="container pb-5">
+
+    <div class="section-header d-md-flex justify-content-between align-items-center mb-4">
+      <h2 class="display-3 fw-normal">Mais Vendidos</h2>
+      <div>
+        <a href="" class="btn btn-outline-dark btn-sm text-uppercase fs-6 rounded-1 banner-color">
+          Ver Mais
+          <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+            <use xlink:href="#arrow-right"></use>
+          </svg></a>
+      </div>
+    </div>
+
+    <div class="products-carousel swiper">
+      <div class="swiper-wrapper">
+        <% for(let i=0;(i<6);i++){ %>
+          <div class="swiper-slide">
+            <!--<div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark text-black fw-bold bg-white">
+            Pré-venda
+          </div>-->
+            <div class="card position-relative">
+              <a href="/single-product/<%= jogos[i].id_jogo %>"><img src=<%=jogos[i].imagem %> class="rounded-4 game-card bg-white"
+                alt="image">
+                <div class="card-body p-0">
+
+                  <h3 class="card-title-promocao pt-4 m-0">
+                    <%= jogos[i].nome %>
+                  </h3>
+              </a>
+
+              <div class="card-text">
+                <span class="rating secondary-font">
+                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                  5.0</span>
+
+                <h3 class="secondary-font text-primary">R$ <%= jogos[i].preco %>
+                </h3>
+
+                <div class="d-flex flex-wrap mt-3">
+                  <a href="javascript:void(0)" class="btn-cart me-3 px-4 pt-3 pb-3">
+                    <h5 class="text-uppercase m-0">COMPRAR AGORA</h5>
+                  </a>
+                  <a href="javascript:void(0)" class="btn-wishlist px-4 pt-3 ">
+                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <!-- / products-carousel -->
+
+
+  </div>
+</section>
+
+<section id="foodies" class="my-5">
+  <div class="container my-5 py-5">
+
+    <div class="section-header d-md-flex justify-content-between align-items-center">
+      <h2 class="display-3 fw-normal">Destaques</h2>
+      <div class="mb-4 mb-md-0">
+        <p class="m-0">
+          <button class="filter-button me-4  active text-white fw-bold" data-filter="*">TODOS</button>
+          <button class="filter-button me-4 text-white fw-bold" data-filter=".cat">PC</button>
+          <button class="filter-button me-4 text-white fw-bold" data-filter=".dog">X-BOX</button>
+          <button class="filter-button me-4 text-white fw-bold" data-filter=".bird">PLAYSTATION</button>
+        </p>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+          VER MAIS
+          <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+            <use xlink:href="#arrow-right"></use>
+          </svg></a>
+      </div>
+    </div>
+
+    <div class="isotope-container row">
+
+      <% jogos.forEach(jogo=> { %>
+        <div class="item cat col-md-4 col-lg-3 my-4">
+          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+          New
+        </div> -->
+          <div class="card position-relative">
+            <a href="/single-product/<%= jogo.nome %>">
+              <img src="<%= jogo.imagem %>" class="img-fluid rounded-4 game-card" alt="image">
+              <div class="card-body p-0">
+                <h3 class="card-title pt-4 m-0">
+                  <%= jogo.nome %>
+                </h3>
+            </a>
+            <div class="card-text">
+              <span class="rating secondary-font">
+                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                5.0</span>
+
+              <h3 class="secondary-font text-primary">R$ <%= jogo.preco %>
+              </h3>
+              <div class="d-flex flex-wrap mt-3">
+                <a href="javascript:void(0)" class="btn-cart me-3 px-4 pt-3 pb-3">
+                  <h5 class="text-uppercase m-0">Comprar Agora</h5>
+                </a>
+                <a href="javascript:void(0)" class="btn-wishlist px-4 pt-3 ">
+                  <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                </a>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+    </div>
+    <% }) %>
+  </div>
+
+
+  </div>
+</section>
+
+<section id="banner-2" class="my-3 banner-background">
+  <div class="container">
+    <div class="row flex-row-reverse banner-content align-items-center">
+      <div class="img-wrapper col-12 col-md-6">
+        <img src="images/games_special.png" class="img-fluid">
+      </div>
+      <div class="content-wrapper col-12 offset-md-1 col-md-5 p-5">
+        <h2 class="banner-title display-1 fw-normal">Ofertas Especiais!!!
+        </h2>
+        <a href="javascript:void(0)"
+          class="btn btn-outline-danger btn-lg text-uppercase fs-4 rounded-1 banner-color m-2 glow-on-hover"
+          id="especial">
+          Veja Agora
+          <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+            <use xlink:href="#arrow-right"></use>
+          </svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="testimonial">
+  <div class="container my-5 py-5">
+    <div class="row">
+      <div class="offset-md-1 col-md-10">
+        <div class="swiper testimonial-swiper">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="row ">
+                <div class="col-2">
+                  <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
+                </div>
+                <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
+                  <p class="testimonial-content fs-2">Após a compra entregaram super rápido meu jogo</p>
+                  <p class="text-white">- Fabrício Feres</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row ">
+                <div class="col-2">
+                  <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
+                </div>
+                <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
+                  <p class="testimonial-content fs-2">Entrega rápida e com preço justo</p>
+                  <p class="text-white">- Gianlucca Fadiga</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row ">
+                <div class="col-2">
+                  <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
+                </div>
+                <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
+                  <p class="testimonial-content fs-2">Estou muito feliz em achar esse site</p>
+                  <p class="text-white">- Gustavo Almeida</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row ">
+                <div class="col-2">
+                  <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
+                </div>
+                <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
+                  <p class="testimonial-content fs-2">Esse site é bom demais</p>
+                  <p class="text-white">- Gabriel Brandão</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="register" style="background: linear-gradient(to bottom, #070819, #4b6f98, #070819)">
+    <div class="container">
+      <div class="row my-5 py-5">
+        <div class="offset-md-3 col-md-6 my-5 ">
+          <h2 class="display-3 fw-normal text-center text-white-emphasis">Ganhe 20% de <span
+              class="card-title-promocao fw-bold">desconto</span> na sua primeira Compra!!!
+          </h2>
+          <form>
+            <div class="mb-3">
+              <input type="email" class="form-control form-control-lg formulario" name="email" id="email"
+                placeholder="Digite seu endereço de Email">
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control form-control-lg formulario" name="email" id="password1"
+                placeholder="Crie a senha">
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control form-control-lg formulario" name="email" id="password2"
+                placeholder="Digite a senha novamente">
+            </div>
+
+            <div class="d-grid gap-2">
+              <a type="button" class="btn btn-dark btn-lg rounded-1" href="/login">CADASTRAR</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="service">
+    <div class="container py-5 my-5">
+      <div class="row g-md-5 pt-4">
+        <div class="col-md-3 my-3">
+          <div class="card">
+            <div>
+              <iconify-icon class="service-icon text-primary" icon="la:shopping-cart"></iconify-icon>
+            </div>
+            <h3 class="card-title py-2 m-0">Entrega rápida</h3>
+            <div class="card-text">
+              <p class="blog-paragraph fs-6">Receba em até 2 horas após aprovação do pagamento.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 my-3">
+          <div class="card">
+            <div>
+              <iconify-icon class="service-icon text-primary" icon="la:user-check"></iconify-icon>
+            </div>
+            <h3 class="card-title py-2 m-0">Pagamento 100% seguro</h3>
+            <div class="card-text">
+              <p class="blog-paragraph fs-6">Contamos com um sistema seguro e confiável para pagamentos por
+                quaisquer meios.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 my-3">
+          <div class="card">
+            <div>
+              <iconify-icon class="service-icon text-primary" icon="la:tag"></iconify-icon>
+            </div>
+            <h3 class="card-title py-2 m-0">Ofertas diárias</h3>
+            <div class="card-text">
+              <p class="blog-paragraph fs-6">Novas ofertas todos os dias.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 my-3">
+          <div class="card">
+            <div>
+              <iconify-icon class="service-icon text-primary" icon="la:award"></iconify-icon>
+            </div>
+            <h3 class="card-title py-2 m-0">Satisfação garantida</h3>
+            <div class="card-text">
+              <p class="blog-paragraph fs-6">Compre, receba, jogue.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>

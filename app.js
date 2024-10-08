@@ -24,7 +24,8 @@ app.get("/", function (req, res) {
       return;
     }
     var jogos = results;
-    res.render("index.ejs", { jogos: jogos });
+    console.log(jogos)
+    res.render("index.ejs", { conteudo:'inicial', jogos: jogos });
   });
 });
 
@@ -32,8 +33,23 @@ app.get("/login", (req, res) => {
   res.render("login.ejs");
 });
 
-app.get("/single-product", (req, res) => {
-  res.render("single-product.ejs");
+app.get("/single-product/:nomeJogo", (req, res) => {
+  var nomeJogo = req.params.nomeJogo
+  connection.query('SELECT * FROM jogos', (err, results) => {
+    if (err) {
+      console.error('Erro ao realizar a consulta:', err);
+      return;
+    }
+    var jogos = results;
+    //console.log(jogos)
+    var idJogo;
+    jogos.forEach(jogo => {
+      if(jogo.nome == nomeJogo){
+        idJogo = jogo.id_jogo;
+      }
+    });
+    res.render("index.ejs", { conteudo:'single-product', jogo: jogos[idJogo-1] });
+  });
 });
 
 app.listen(porta, () => {

@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<%- include('includes/head.ejs') -%>
-
-  <body style="background-color: #070819">
-    <%- include('includes/header.ejs') -%>
 
       <section id="selling-product">
         <div class="container my-md-5 py-5">
@@ -79,7 +73,7 @@
             <div class="col-lg-6 mt-5">
               <div class="product-info">
                 <div class="element-header">
-                  <h2 itemprop="name" class="display-6 fw-bold">Elden Ring</h2>
+                  <h2 itemprop="name" class="display-6 fw-bold"><%= jogo.nome %></h2>
                   <div class="rating-container d-flex gap-0 align-items-center">
                     <span class="rating secondary-font">
                       <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
@@ -91,14 +85,10 @@
                   </div>
                 </div>
                 <div class="product-price pt-3 pb-3">
-                  <strong class="text-primary display-6 fw-bold">R$ 148,00</strong><del class="ms-2">R$ 240,00</del>
+                  <strong class="text-primary display-6 fw-bold">R$ <%= jogo.preco %></strong>
                 </div>
                 <p class="text-start text-break fw-medium lh-base mb-3">
-                  O jogo oferece uma experiência desafiadora, rica em combates
-                  intensos e exploração em um ambiente de mundo aberto. Com
-                  gráficos deslumbrantes e uma narrativa profunda, você será
-                  transportado para o reino de "The Lands Between", onde precisará
-                  enfrentar inimigos formidáveis e chefes épicos.
+                  <%= jogo.descricao %>
                 </p>
                 <hr />
                 <div class="cart-wrapper">
@@ -380,8 +370,3 @@
           </div>
         </div>
       </section>
-
-      <%- include('includes/footer.ejs') -%>
-  </body>
-
-</html>
