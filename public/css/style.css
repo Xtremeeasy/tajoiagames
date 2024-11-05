@@ -1113,4 +1113,12 @@ input[type=search] {
 .product-img {
   height: 444px;
   object-position: center;
+  height: 22rem;
+}
+
+.productBorda {
+    filter: drop-shadow(1px 1px 0 #6d6b6b)
+            drop-shadow(-1px 1px 0 #6d6b6b)
+            drop-shadow(1px -1px 0 #6d6b6b)
+            drop-shadow(-1px -1px 0 #6d6b6b);
 }

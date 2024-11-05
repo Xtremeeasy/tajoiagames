@@ -127,7 +127,7 @@
             Pré-venda
           </div>-->
             <div class="card position-relative">
-              <a href="/single-product/<%= jogos[i].id_jogo %>"><img src=<%=jogos[i].imagem %> class="rounded-4 game-card bg-white"
+              <a href="/single-product/<%= jogos[i].nome %>"><img src=<%=jogos[i].imagem %> class="rounded-4 game-card bg-white"
                 alt="image">
                 <div class="card-body p-0">
 
@@ -177,9 +177,10 @@
       <div class="mb-4 mb-md-0">
         <p class="m-0">
           <button class="filter-button me-4  active text-white fw-bold" data-filter="*">TODOS</button>
-          <button class="filter-button me-4 text-white fw-bold" data-filter=".cat">PC</button>
-          <button class="filter-button me-4 text-white fw-bold" data-filter=".dog">X-BOX</button>
-          <button class="filter-button me-4 text-white fw-bold" data-filter=".bird">PLAYSTATION</button>
+          <button class="filter-button me-4 text-white fw-bold" data-filter=".pc">PC</button>
+          <button class="filter-button me-4 text-white fw-bold" data-filter=".xbox">X-BOX</button>
+          <button class="filter-button me-4 text-white fw-bold" data-filter=".play">PLAYSTATION</button>
+          <button class="filter-button me-4 text-white fw-bold" data-filter=".nin">NINTENDO</button>
         </p>
       </div>
       <div>
@@ -201,8 +202,8 @@
           <div class="card position-relative">
             <a href="/single-product/<%= jogo.nome %>">
               <img src="<%= jogo.imagem %>" class="img-fluid rounded-4 game-card" alt="image">
-              <div class="card-body p-0">
-                <h3 class="card-title pt-4 m-0">
+              <div class="card-body p-0 d-flex flex-column">
+                <h3 class="card-title pt-4 m-0 fs-3 text-truncate">
                   <%= jogo.nome %>
                 </h3>
             </a>
