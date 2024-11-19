@@ -15,6 +15,7 @@ connection.connect((err) => {
 
 //arquivos estáticos
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 //rotas
 app.get("/", function (req, res) {
@@ -49,6 +50,29 @@ app.get("/single-product/:nomeJogo", (req, res) => {
       }
     });
     res.render("index.ejs", { conteudo:'single-product', jogo: jogos[idJogo-1] });
+  });
+});
+
+app.post("/logar", (req, res) => {
+  let email = req.body.email; // Use req.body para acessar os dados do corpo da requisição
+  let senha = req.body.senha;
+
+  console.log(email);
+  console.log(senha);
+  
+  connection.query(`SELECT email FROM usuarios WHERE email = ? AND senha = ?`, [email, senha], (err, results) => {
+    if (err) {
+      console.log("Erro ao realizar login", err);
+      return res.status(500).send("Erro ao realizar login");
+    }
+
+    if (results.length > 0) {
+      console.log("Login bem-sucedido");
+      return res.status(200).send("Login bem-sucedido");
+    } else {
+      console.log("Login ou senha incorretos");
+      return res.status(401).send("Login ou senha incorretos");
+    }
   });
 });
 
