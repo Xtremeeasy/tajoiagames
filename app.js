@@ -68,7 +68,7 @@ app.post("/logar", (req, res) => {
 
     if (results.length > 0) {
       console.log("Login bem-sucedido");
-      return res.status(200).send("Login bem-sucedido");
+      
     } else {
       console.log("Login ou senha incorretos");
       return res.status(401).send("Login ou senha incorretos");
@@ -120,13 +120,16 @@ app.get("/single-product/:nomeJogo", (req, res) => {
   });
 });
 
-app.get("/painel-adm/mostrar-usuarios", (req, res) => {
-  connection.query(`CALL procedure_usuarios_registrados()`, (err, results) =>{
-    if(err){
-      console.error('Erro ao realizar a consulta', err);
+app.post("/painel-adm/mostrar-usuarios", (req, res) => {
+  connection.query(`SELECT * FROM Usuarios`, (err, results) => {
+    if (err) {
+      console.log("Erro ao buscar usuários", err);
+      return res.status(500).json({ error: "Erro ao buscar usuários" });
     }
-  });
 
+    // Retorna os dados dos usuários em formato JSON
+    res.json({ usuarios: results });
+  });
 });
 
 

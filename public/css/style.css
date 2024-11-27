@@ -250,6 +250,7 @@ body {
 }
 
 body {
+  background-color: #070819;
   letter-spacing: 0.01625rem;
 }
 
@@ -1007,6 +1008,42 @@ input[type=search] {
 .login-option:hover{
   color: white;
   background: #5e81ad;
+}
+
+
+#usuarios-container{
+  margin: 0 37.5%; /* Espaçamento acima do contêiner */
+}
+
+#mostrar-usuarios{
+  width: 300px;
+  margin: 0 42%;
+}
+table {
+  width: 40%; /* Ajuste a largura conforme necessário */
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  color: black;
+}
+
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
 }
 
 .checkbox-wrapper-1 [type="checkbox"].substituted {

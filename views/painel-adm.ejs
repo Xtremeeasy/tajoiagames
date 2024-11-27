@@ -1,4 +1,53 @@
-<h1>PAINEL DE ADM</h1>
-<form action="/painel-adm/mostrar-usuarios" method="post">
-    <button type="submit">Mostrar Usuários</button>
-</form>
+<%- include('includes/head.ejs') -%>
+<%- include('includes/header.ejs') -%>
+<body>
+    <h1 style="text-align: center;">PAINEL DE ADM</h1>
+    <button id="mostrar-usuarios">Mostrar Usuários</button>
+    <div id="usuarios-container">
+    <script>
+        document.getElementById('mostrar-usuarios').addEventListener('click', function() {
+            fetch('/painel-adm/mostrar-usuarios', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar usuários');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const container = document.getElementById('usuarios-container');
+                container.innerHTML = ''; // Limpa o conteúdo anterior
+
+                const table = document.createElement('table');
+                const thead = document.createElement('thead');
+                const tbody = document.createElement('tbody');
+
+                // Cria o cabeçalho da tabela
+                const headerRow = document.createElement('tr');
+                headerRow.innerHTML = '<th>ID</th><th>Email</th><th>Nome</th><th>Status</th>'; // Adicione mais colunas conforme necessário
+                thead.appendChild(headerRow);
+
+                // Adiciona os usuários à tabela
+                data.usuarios.forEach(usuario => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td>${usuario.id_usuario}</td><td>${usuario.email}</td><td>${usuario.nome}</td><td>${usuario.status}</td>`; // Adicione mais colunas conforme necessário
+                    tbody.appendChild(row);
+                });
+
+                table.appendChild(thead);
+                table.appendChild(tbody);
+                container.appendChild(table);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao buscar usuários');
+            });
+        });
+    </script>
+    </div>
+</body>
+<%- include('includes/footer.ejs') -%>
