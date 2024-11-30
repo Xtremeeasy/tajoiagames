@@ -1015,10 +1015,11 @@ input[type=search] {
   margin: 0 37.5%; /* Espaçamento acima do contêiner */
 }
 
-#mostrar-usuarios{
+#mostrar-usuarios, #mostrar-pedidos{
   width: 300px;
   margin: 0 42%;
 }
+
 table {
   width: 40%; /* Ajuste a largura conforme necessário */
   border-collapse: collapse;
