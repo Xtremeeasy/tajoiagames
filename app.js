@@ -34,7 +34,6 @@ app.get("/", function (req, res) {
       return;
     }
     var jogos = results;
-    console.log(jogos)
     res.render("index.ejs", { conteudo:'inicial', jogos: jogos });
   });
 });
@@ -74,7 +73,7 @@ app.post("/logar", (req, res) => {
   console.log(email);
   console.log(senha);
   
-  connection.query(`SELECT email, id_usuario FROM usuarios WHERE email = ? AND senha = ?`, [email, senha], (err, results) => {
+  connection.query(`SELECT id_usuario FROM usuarios WHERE email = ? AND senha = ?`, [email, senha], (err, results) => {
     if (err) {
       console.log("Erro ao realizar login", err);
       return res.status(500).send("Erro ao realizar login");
@@ -109,20 +108,26 @@ app.post("/logar/mostrar-pedidos", (req, res) => {
 });
 // admin
 app.get("/admin", (req, res) => {
-  res.render("admin.ejs");
+  if (req.session.userId){
+    res.render("painel-adm.ejs");
+  } else {
+    res.render("admin.ejs");
+  }
 });
 
 app.post("/admin/login", (req, res) => {
   let email = req.body.email; // Use req.body para acessar os dados do corpo da requisição
   let senha = req.body.senha;
 
-  connection.query(`SELECT email FROM usuarios WHERE email = ? AND senha = ? AND administrador = 1`, [email, senha], (err, results) => {
+  connection.query(`SELECT id_usuario FROM usuarios WHERE email = ? AND senha = ? AND administrador = 1`, [email, senha], (err, results) => {
     if(err){
       console.log("Erro ao realizar o login", err);
       return res.status(500).send("Erro ao realizar login");
     }
 
     if (results.length > 0) {
+      req.session.userId = results[0].id_usuario;
+      console.log(req.session.userId)
       console.log("Login bem-sucedido");
       res.render("painel-adm.ejs");
     } else {
@@ -172,6 +177,20 @@ app.post("/painel-adm/mostrar-pedidos", (req, res) => {
 
     // Retorna os dados dos usuários em formato JSON
     res.json({ pedidos: results[0] });
+  });
+});
+
+
+//Avaliações
+app.post("/single-product/avaliar", (req,res) => {
+  let nome = req.body.nome;
+  let email = req.body.email;
+  let comentario = req.body.comentario;
+  let id_usuario = req.session.userId;
+  connection.query(`INSERT INTO reviews(?, ?, 3, ?, ?) VALUES(1, ${req.session.userId}, 3, 'Testando', 'Ótimo')`, [1, id_usuario, comentario], (err, results) => {
+    if(err) {
+      console.log("Falha ao adicionar a review");
+    }
   });
 });
 
