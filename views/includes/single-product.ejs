@@ -271,35 +271,42 @@
                 </div>
               </div>
             </div>
-            <div class="add-review mt-5">
-              <h3>Adicione uma avaliação</h3>
-              <p>
-                Seu endereço de email não será publicado. Os campos obrigatórios estão marcados com *
-              </p>
-              <form id="form" class="form-group" method="post" action="avaliar">
-                <div class="pb-3">
-                  <div class="review-rating">
-                    <span>Sua nota *</span>
-                    <div class="rating-container d-flex align-items-center">
-                      <span class="rating secondary-font">
-                        <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                        <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                        <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                        <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                        <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
-                        (5.0)</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="pb-3">
-                  <label>Sua Avaliação</label>
-                  <textarea name="comentario" class="form-control" placeholder="Escreva sua avaliação aqui*"></textarea>
-                </div>
-                <button type="submit" name="submit" class="btn btn-dark btn-large text-uppercase w-100 mt-4">
-                  Enviar
-                </button>
-              </form>
-            </div>
+            <% if (req.session.userId) { %> 
+              <div class="add-review mt-5">
+                  <h3>Adicione uma avaliação</h3>
+                  <p>
+                      Seu endereço de email não será publicado. Os campos obrigatórios estão marcados com *
+                  </p>
+                  <form id="form" class="form-group" method="post" action="avaliar">
+                    <input type="hidden" name="id_jogo" value="<%= jogo.id_jogo %>" /> 
+                    <input type="hidden" name="nome" value="<%= jogo.nome %>" /> 
+                      <div class="pb-3">
+                          <div class="review-rating">
+                              <span>Sua nota *</span>
+                              <div class="rating-container d-flex align-items-center">
+                                  <span class="rating secondary-font">
+                                      <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
+                                      <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
+                                      <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
+                                      <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
+                                      <iconify-icon icon="clarity:star-solid" class="text-primary me-2"></iconify-icon>
+                                      (5.0)</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="pb-3">
+                          <label>Sua Avaliação</label>
+                          <textarea name="comentario" class="form-control" placeholder="Escreva sua avaliação aqui*"></textarea>
+                      </div>
+                      <button type="submit" name="submit" class="btn btn-dark btn-large text-uppercase w-100 mt-4">
+                          Enviar
+                      </button>
+                  </form>
+              </div>
+          <% } else { %>
+              <p>Por favor, <a href="/login">faça login</a> para adicionar uma avaliação.</p>
+          <% } %>
+            
           </div>
         </div>
       </div>

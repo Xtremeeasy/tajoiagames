@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //rotas
 app.get("/", function (req, res) {
-  connection.query('SELECT * FROM jogos', (err, results) => {
+  connection.query('SELECT * FROM Jogos', (err, results) => {
     if (err) {
       console.error('Erro ao realizar a consulta:', err);
       return;
@@ -49,10 +49,9 @@ app.get("/login", (req, res) => {
 
 app.get("/single-product/:nomeJogo", (req, res) => {
   var nomeJogo = req.params.nomeJogo
-  connection.query('SELECT * FROM jogos', (err, results) => {
+  connection.query('SELECT * FROM Jogos', (err, results) => {
     if (err) {
       console.error('Erro ao realizar a consulta:', err);
-      return;
     }
     var jogos = results;
     //console.log(jogos)
@@ -60,9 +59,10 @@ app.get("/single-product/:nomeJogo", (req, res) => {
     jogos.forEach(jogo => {
       if(jogo.nome == nomeJogo){
         idJogo = jogo.id_jogo;
+        req.jogo = idJogo;
       }
     });
-    res.render("index.ejs", { conteudo:'single-product', jogo: jogos[idJogo-1] });
+    res.render("index.ejs", { conteudo:'single-product', jogo: jogos[idJogo-1], req: req});
   });
 });
 
@@ -73,7 +73,7 @@ app.post("/logar", (req, res) => {
   console.log(email);
   console.log(senha);
   
-  connection.query(`SELECT id_usuario FROM usuarios WHERE email = ? AND senha = ?`, [email, senha], (err, results) => {
+  connection.query(`SELECT id_usuario FROM Usuarios WHERE email = ? AND senha = ?`, [email, senha], (err, results) => {
     if (err) {
       console.log("Erro ao realizar login", err);
       return res.status(500).send("Erro ao realizar login");
@@ -116,10 +116,10 @@ app.get("/admin", (req, res) => {
 });
 
 app.post("/admin/login", (req, res) => {
-  let email = req.body.email; // Use req.body para acessar os dados do corpo da requisição
+  let email = req.body.email;
   let senha = req.body.senha;
 
-  connection.query(`SELECT id_usuario FROM usuarios WHERE email = ? AND senha = ? AND administrador = 1`, [email, senha], (err, results) => {
+  connection.query(`SELECT id_usuario FROM Usuarios WHERE email = ? AND senha = ? AND administrador = 1`, [email, senha], (err, results) => {
     if(err){
       console.log("Erro ao realizar o login", err);
       return res.status(500).send("Erro ao realizar login");
@@ -135,25 +135,6 @@ app.post("/admin/login", (req, res) => {
       return res.status(401).send("Login ou senha incorretos");
     }
   })
-});
-
-app.get("/single-product/:nomeJogo", (req, res) => {
-  var nomeJogo = req.params.nomeJogo
-  connection.query('SELECT * FROM jogos', (err, results) => {
-    if (err) {
-      console.error('Erro ao realizar a consulta:', err);
-      return;
-    }
-    var jogos = results;
-    //console.log(jogos)
-    var idJogo;
-    jogos.forEach(jogo => {
-      if(jogo.nome == nomeJogo){
-        idJogo = jogo.id_jogo;
-      }
-    });
-    res.render("index.ejs", { conteudo:'single-product', jogo: jogos[idJogo-1] });
-  });
 });
 
 app.post("/painel-adm/mostrar-usuarios", (req, res) => {
@@ -183,15 +164,16 @@ app.post("/painel-adm/mostrar-pedidos", (req, res) => {
 
 //Avaliações
 app.post("/single-product/avaliar", (req,res) => {
-  let nome = req.body.nome;
-  let email = req.body.email;
   let comentario = req.body.comentario;
   let id_usuario = req.session.userId;
-  connection.query(`INSERT INTO reviews(?, ?, 3, ?, ?) VALUES(1, ${req.session.userId}, 3, 'Testando', 'Ótimo')`, [1, id_usuario, comentario], (err, results) => {
+  let id_jogo = req.body.id_jogo;
+  let nome = req.body.nome;
+  connection.query(`INSERT INTO Reviews(id_jogo, id_usuario, rating, comentario) VALUES(?, ?, 4, ?)`, [id_jogo, id_usuario, comentario], (err, results) => {
     if(err) {
       console.log("Falha ao adicionar a review");
     }
   });
+  res.redirect(`/single-product/${nome}`)
 });
 
 
