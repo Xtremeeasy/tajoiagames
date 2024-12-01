@@ -167,6 +167,31 @@ app.post("/painel-adm/mostrar-pedidos", (req, res) => {
   });
 });
 
+app.post("/painel-adm/cadastrar-jogo", (req, res) => {
+  let nomeJogo = req.body.nomeJogo;
+  let desenvolvedora = req.body.desenvolvedora;
+  let editora = req.body.editora;
+  let dataLancamento = req.body.dataLancamento;
+  let preco = req.body.preco;
+  let categorias = req.body.categorias;
+  let plataformas = req.body.plataformas;
+  let modoDeJogo = req.body.modoDeJogo;
+  let idiomas = req.body.idiomas;
+  let descricao = req.body.descricao;
+  let sobre = req.body.sobre;
+  let requisitos = req.body.requisitos;
+
+  connection.query(`INSERT INTO Jogos (nome, descricao, desenvolvedor, editora, data_lancamento, preco, Categorias, Plataforma, Modo_de_jogo, Idioma, Sobre, Requisitos_de_Sistema) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [nomeJogo, descricao, desenvolvedora, editora, dataLancamento, preco, categorias, plataformas, modoDeJogo, idiomas, sobre, requisitos], (err, results) => {
+    if (err) {
+      console.log("Erro ao cadastrar jogo", err);
+      return res.status(500).json({ error: "Erro ao cadastrar jogo" });
+    } else {
+      res.render("painel-adm.ejs");
+      console.log("Jogo cadastrado com sucesso!");
+    }
+  });
+});
+
 
 //Avaliações
 app.post("/single-product/avaliar", (req,res) => {

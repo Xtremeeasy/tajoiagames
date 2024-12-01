@@ -279,7 +279,7 @@
                   </p>
                   <form id="form" class="form-group" method="post" action="avaliar">
                     <input type="hidden" name="id_jogo" value="<%= jogo.id_jogo %>" /> 
-                    <input type="hidden" name="nome" value="<%= jogo.nome %>" /> 
+                    <input type="hidden" name="nome" value="<%= jogo.nome %>" />
                       <div class="pb-3">
                           <div class="review-rating">
                               <span>Sua nota *</span>
@@ -304,9 +304,8 @@
                   </form>
               </div>
           <% } else { %>
-              <p>Por favor, <a href="/login">faça login</a> para adicionar uma avaliação.</p>
+              <p>Por favor, <a href="/login" style="color: red">faça login</a> para adicionar uma avaliação.</p>
           <% } %>
-            
           </div>
         </div>
       </div>

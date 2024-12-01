@@ -98,14 +98,66 @@
         </script>
     </div>
     <div id="usuarios-container">
+        <form id="formJogo" action="/painel-adm/cadastrar-jogo" method="post" style="display: none">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nome do Jogo</label>
+                <input type="text" name="nomeJogo" class="form-control" id="exampleFormControlInput1" placeholder="Digite o nome do jogo...">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Desenvolvedora do Jogo</label>
+                <input type="text" name="desenvolvedora" class="form-control" id="exampleFormControlInput1" placeholder="Digite a desenvolvedora do jogo...">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Editora</label>
+                <input type="text" name="editora" class="form-control" id="exampleFormControlInput1" placeholder="Digite a editora do jogo...">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Data de Lançamento</label>
+                <input type="text" name="dataLancamento" class="form-control" id="exampleFormControlInput1" placeholder="Digite a data de lançamento do jogo...">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Preço do Jogo</label>
+                <input type="number" name="preco" class="form-control" id="exampleFormControlInput1" placeholder="Digite o preço do jogo...">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Categorias</label>
+                <input type="text" name="categorias" class="form-control" id="exampleFormControlInput1" placeholder="Digite as categorias do jogo...">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Plataformas</label>
+                <input type="text" name="plataformas" class="form-control" id="exampleFormControlInput1" placeholder="Digite as plataformas do jogo...">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Modo de Jogo</label>
+                <input type="text" name="modoDeJogo" class="form-control" id="exampleFormControlInput1" placeholder="Digite o modo de jogo...">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Digite o(s) idioma(s) do jogo</label>
+                <input type="text" name="idiomas" class="form-control" id="exampleFormControlInput1" placeholder="Digite o(s) idioma(s) do jogo...">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Descrição do Jogo</label>
+                <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Sobre</label>
+                <textarea class="form-control" name="sobre" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Requisitos do Sistema</label>
+                <textarea class="form-control" name="requisitos" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
         <script>
-            const form = document.getElementById('form1');
-            if (form.style.display === 'none') {
-                form.style.display = 'block';  
-        // or 'flex' or 'inline' depending on how you want to display it
-            } else {
-                form.style.display = 'none';
-            }
+            document.getElementById('inserir-jogos').addEventListener('click', function() {
+                let form = document.getElementById('formJogo');
+                if (form.style.display === 'none') {
+                    form.style.display = 'block';  
+                } else {
+                    form.style.display = 'none';
+                }
+            });
         </script>
     </div>
 </body>
