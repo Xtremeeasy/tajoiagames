@@ -4,6 +4,7 @@
     <h1 style="text-align: center;">PAINEL DE ADM</h1>
     <button id="mostrar-usuarios">Mostrar Usuários (NÃO ADMS)</button>
     <button id="mostrar-pedidos">Mostrar Pedidos</button>
+    <button id="inserir-jogos">Inserir Jogos</button>
     <div id="usuarios-container">
         <script>
             document.getElementById('mostrar-usuarios').addEventListener('click', function() {
@@ -94,6 +95,17 @@
                     alert('Erro ao buscar usuários');
                 });
             });
+        </script>
+    </div>
+    <div id="usuarios-container">
+        <script>
+            const form = document.getElementById('form1');
+            if (form.style.display === 'none') {
+                form.style.display = 'block';  
+        // or 'flex' or 'inline' depending on how you want to display it
+            } else {
+                form.style.display = 'none';
+            }
         </script>
     </div>
 </body>

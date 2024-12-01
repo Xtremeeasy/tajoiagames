@@ -4,7 +4,7 @@ const connection = MySQL.createConnection({
     user: 'root',
     password: '',
     host: 'localhost',
-    database: 'tajoiagames'
+    database: 'tajoiaDB'
 });
 
 function selectJogos(){

@@ -40,7 +40,11 @@ app.get("/", function (req, res) {
 
 app.get("/login", (req, res) => {
   if(req.session.userId){
-    res.render("painel-cliente.ejs");
+    if(req.session.adm == 1){
+      res.render("painel-adm.ejs");
+    } else {
+      res.render("painel-cliente.ejs");
+    }
   } else {
     res.render("login.ejs");
   }
@@ -54,7 +58,6 @@ app.get("/single-product/:nomeJogo", (req, res) => {
       console.error('Erro ao realizar a consulta:', err);
     }
     var jogos = results;
-    //console.log(jogos)
     var idJogo;
     jogos.forEach(jogo => {
       if(jogo.nome == nomeJogo){
@@ -67,13 +70,13 @@ app.get("/single-product/:nomeJogo", (req, res) => {
 });
 
 app.post("/logar", (req, res) => {
-  let email = req.body.email; // Use req.body para acessar os dados do corpo da requisição
+  let email = req.body.email;
   let senha = req.body.senha;
 
   console.log(email);
   console.log(senha);
   
-  connection.query(`SELECT id_usuario FROM Usuarios WHERE email = ? AND senha = ?`, [email, senha], (err, results) => {
+  connection.query(`SELECT id_usuario, administrador FROM Usuarios WHERE email = ? AND senha = ?`, [email, senha], (err, results) => {
     if (err) {
       console.log("Erro ao realizar login", err);
       return res.status(500).send("Erro ao realizar login");
@@ -81,7 +84,12 @@ app.post("/logar", (req, res) => {
 
     if (results.length > 0) {
       req.session.userId = results[0].id_usuario; //Atribuindo o id do usuário à variável de sessão
-      res.render("painel-cliente.ejs")
+      req.session.adm = results[0].administrador
+      if(req.session.adm == 1){
+        res.render("painel-adm.ejs");
+      } else {
+        res.render("painel-cliente.ejs")
+      }
       console.log("Login bem-sucedido");
     } else {
       console.log("Login ou senha incorretos");
@@ -91,8 +99,6 @@ app.post("/logar", (req, res) => {
 
   });
 });
-
-
 
 app.post("/logar/mostrar-pedidos", (req, res) => {
   const id_usuario = req.session.userId;
