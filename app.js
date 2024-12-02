@@ -1,5 +1,7 @@
 const express = require("express");
 const session = require('express-session'); //Para conseguir utilizar sessões de usuários
+const multer = require('multer');
+const path = require('path');
 const app = express();
 const { connection, selectJogos } = require("./database/database");
 const porta = 9999;
@@ -23,8 +25,39 @@ connection.connect((err) => {
 //arquivos estáticos
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, path.join(__dirname, 'public/images')); // Pasta onde as imagens serão salvas
+  },
+  filename: (req, file, cb) => {
+    numeroDeJogos((error, count) => {
+        if (error) {
+            return cb(error); // Passa o erro para o callback
+        }
+        cb(null, "game_card-" + count + path.extname(file.originalname)); // Nome do arquivo
+    });
+  } 
+});
+const upload = multer({ storage: storage });
 
-
+function numeroDeJogos(callback) {
+  const query = 'SELECT COUNT(*) AS count FROM Jogos';
+  
+  connection.query(query, (error, results) => {
+      if (error) {
+          return callback(error, null);
+      }
+      // Retorna a contagem
+      callback(null, results[0].count);
+  });
+}
+numeroDeJogos((error, count) => {
+  if (error) {
+      console.error('Erro ao contar os jogos:', error);
+  } else {
+      console.log('Número de jogos:', count);
+  }
+})
 
 //rotas
 app.get("/", function (req, res) {
@@ -53,7 +86,7 @@ app.get("/login", (req, res) => {
 
 app.get("/single-product/:nomeJogo", (req, res) => {
   var nomeJogo = req.params.nomeJogo
-  connection.query('SELECT j.*, r.comentario FROM Jogos j LEFT JOIN Reviews r ON j.id_jogo = r.id_jogo WHERE j.nome = ?', [nomeJogo], (err, results) => {
+  connection.query("SELECT j.*, r.comentario, r.rating, r.data_review, u.nomeUsuario FROM Jogos j LEFT JOIN Reviews r ON j.id_jogo = r.id_jogo LEFT JOIN Usuarios u ON r.id_usuario = u.id_usuario WHERE j.nome = ?", [nomeJogo], (err, results) => {
     if (err) {
       console.error('Erro ao realizar a consulta:', err);
     }
@@ -162,7 +195,8 @@ app.post("/painel-adm/mostrar-pedidos", (req, res) => {
   });
 });
 
-app.post("/painel-adm/cadastrar-jogo", (req, res) => {
+//cadastrar jogo
+app.post("/painel-adm/cadastrar-jogo",upload.single('imagemJogo'), (req, res) => {
   let nomeJogo = req.body.nomeJogo;
   let desenvolvedora = req.body.desenvolvedora;
   let editora = req.body.editora;
@@ -175,14 +209,34 @@ app.post("/painel-adm/cadastrar-jogo", (req, res) => {
   let descricao = req.body.descricao;
   let sobre = req.body.sobre;
   let requisitos = req.body.requisitos;
-  connection.query(`INSERT INTO Jogos (nome, descricao, desenvolvedor, editora, data_lancamento, preco, Categorias, Plataforma, Modo_de_jogo, Idioma, Sobre, Requisitos_de_Sistema) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [nomeJogo, descricao, desenvolvedora, editora, dataLancamento, preco, categorias, plataformas, modoDeJogo, idiomas, sobre, requisitos], (err, results) => {
-    if (err) {
-      console.log("Erro ao cadastrar jogo", err);
-      return res.status(500).json({ error: "Erro ao cadastrar jogo" });
-    } else {
-      res.render("painel-adm.ejs");
-      console.log("Jogo cadastrado com sucesso!");
+  if (req.file) {
+    console.log("Imagem cadastrada com sucesso!")
+  } else {
+      console.log('Erro ao enviar o arquivo.');
+      console.log("req.file: " + req.file);
+  }
+  
+  numeroDeJogos((error, count) => {
+    if (error) {
+        console.error('Erro ao contar os jogos:', error);
+        return; // Retorna em caso de erro
     }
+
+    // Prepara o nome da imagem usando a contagem de jogos
+    const imagem = "images/game_card-" + count + path.extname(req.file.originalname); // ou o formato correto da imagem
+
+    // Executa a consulta de inserção
+    connection.query(`INSERT INTO Jogos (nome, descricao, desenvolvedor, editora, data_lancamento, preco, Categorias, Plataforma, Modo_de_jogo, Idioma, Sobre, Requisitos_de_Sistema, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+    [nomeJogo, descricao, desenvolvedora, editora, dataLancamento, preco, categorias, plataformas, modoDeJogo, idiomas, sobre, requisitos, imagem], 
+    (err, results) => {
+        if (err) {
+            console.log("Erro ao cadastrar jogo", err);
+            return res.status(500).json({ error: "Erro ao cadastrar jogo" });
+        } else {
+          res.render("painel-adm.ejs");
+          console.log("Jogo cadastrado com sucesso!");
+        }
+    });
   });
 });
 
@@ -206,6 +260,7 @@ app.post("/single-product/avaliar", (req,res) => {
   let id_usuario = req.session.userId;
   let id_jogo = req.body.id_jogo;
   let nome = req.body.nome;
+  let nomeUsuario = req.body.nomeUsuario;
   connection.query(`INSERT INTO Reviews(id_jogo, id_usuario, rating, comentario) VALUES(?, ?, 4, ?)`, [id_jogo, id_usuario, comentario], (err, results) => {
     if(err) {
       console.log("Falha ao adicionar a review");
