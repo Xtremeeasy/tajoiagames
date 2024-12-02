@@ -179,97 +179,50 @@
           <div class="tab-pane fade" id="v-pills-reviews" role="tabpanel" aria-labelledby="v-pills-reviews-tab"
             tabindex="0">
             <div class="review-box d-flex flex-wrap">
-              <div class="col-lg-6 d-flex flex-wrap gap-3">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                  <div class="review-content">
-                    <div class="rating-container d-flex align-items-center">
-                      <div class="rating" data-rating="1">
-                        <svg width="24" height="24" class="text-primary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <div class="rating" data-rating="2">
-                        <svg width="24" height="24" class="text-primary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <div class="rating" data-rating="3">
-                        <svg width="24" height="24" class="text-primary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <div class="rating" data-rating="4">
-                        <svg width="24" height="24" class="text-secondary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <div class="rating" data-rating="5">
-                        <svg width="24" height="24" class="text-secondary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <span class="rating-count">(3.5)</span>
+              <% console.log(jogo.nome) %>
+
+            <div class="col-lg-6 d-flex flex-wrap gap-3">
+              <div class="col-md-8">
+                <div class="review-content">
+                  <div class="rating-container d-flex align-items-center">
+                    <div class="rating" data-rating="1">
+                      <svg width="24" height="24" class="text-primary">
+                        <use xlink:href="#star-solid"></use>
+                      </svg>
                     </div>
-                    <div class="review-header">
-                      <span class="author-name">Alexandre de Moraes</span>
-                      <span class="review-date">– 03/07/2023</span>
+                    <div class="rating" data-rating="2">
+                      <svg width="24" height="24" class="text-primary">
+                        <use xlink:href="#star-solid"></use>
+                      </svg>
                     </div>
-                    <p>
-                      Vitae tortor condimentum lacinia quis vel eros donec
-                      ac. Nam at lectus urna duis convallis convallis
-                    </p>
+                    <div class="rating" data-rating="3">
+                      <svg width="24" height="24" class="text-primary">
+                        <use xlink:href="#star-solid"></use>
+                      </svg>
+                    </div>
+                    <div class="rating" data-rating="4">
+                      <svg width="24" height="24" class="text-secondary">
+                        <use xlink:href="#star-solid"></use>
+                      </svg>
+                    </div>
+                    <div class="rating" data-rating="5">
+                      <svg width="24" height="24" class="text-secondary">
+                        <use xlink:href="#star-solid"></use>
+                      </svg>
+                    </div>
+                    <span class="rating-count">(3.5)</span>
                   </div>
+                  <div class="review-header">
+                    <span class="author-name"><%= jogo.nomeUsuario %></span>
+                    <span class="review-date">– <%= jogo.data_review %> </span>
+                  </div>
+                  <p>
+                    <%= jogo.comentario %>
+                  </p>
                 </div>
               </div>
-              <div class="col-lg-6 d-flex flex-wrap gap-3">
-                <div class="col-md-2">
-                  <div class="image-holder">
-                    <img src="images/reviewer-2.jpg" alt="review" class="img-fluid rounded-circle" />
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <div class="review-content">
-                    <div class="rating-container d-flex align-items-center">
-                      <div class="rating" data-rating="1">
-                        <svg width="24" height="24" class="text-primary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <div class="rating" data-rating="2">
-                        <svg width="24" height="24" class="text-primary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <div class="rating" data-rating="3">
-                        <svg width="24" height="24" class="text-primary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <div class="rating" data-rating="4">
-                        <svg width="24" height="24" class="text-secondary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <div class="rating" data-rating="5">
-                        <svg width="24" height="24" class="text-secondary">
-                          <use xlink:href="#star-solid"></use>
-                        </svg>
-                      </div>
-                      <span class="rating-count">(3.5)</span>
-                    </div>
-                    <div class="review-header">
-                      <span class="author-name">Terry Crews</span>
-                      <span class="review-date">– 03/06/2022</span>
-                    </div>
-                    <p>
-                      Vitae tortor condimentum lacinia quis vel eros donec
-                      ac. Nam at lectus urna duis convallis convallis
-                    </p>
-                  </div>
-                </div>
-              </div>
+            </div>
+              <% console.log(jogo.comentario) %>
             </div>
             <% if (req.session.userId) { %> 
               <div class="add-review mt-5">
@@ -280,6 +233,7 @@
                   <form id="form" class="form-group" method="post" action="avaliar">
                     <input type="hidden" name="id_jogo" value="<%= jogo.id_jogo %>" /> 
                     <input type="hidden" name="nome" value="<%= jogo.nome %>" /> 
+                    <input type="hidden" name="nomeUsuario" value="<%= jogo.nomeUsuario %>" /> 
                       <div class="pb-3">
                           <div class="review-rating">
                               <span>Sua nota *</span>
