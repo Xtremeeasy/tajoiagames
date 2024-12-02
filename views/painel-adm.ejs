@@ -4,7 +4,7 @@
     <h1 style="text-align: center;">PAINEL DE ADM</h1>
     <button id="mostrar-usuarios">Mostrar Usuários (NÃO ADMS)</button>
     <button id="mostrar-pedidos">Mostrar Pedidos</button>
-    <button id="inserir-jogos">Inserir Jogos</button>
+    <button id="cadastrar-jogo">Cadastrar Jogo</button>
     <div id="usuarios-container">
         <script>
             document.getElementById('mostrar-usuarios').addEventListener('click', function() {
@@ -101,56 +101,56 @@
         <form id="formJogo" action="/painel-adm/cadastrar-jogo" method="post" style="display: none">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Nome do Jogo</label>
-                <input type="text" name="nomeJogo" class="form-control" id="exampleFormControlInput1" placeholder="Digite o nome do jogo...">
+                <input type="text" name="nomeJogo" class="form-control" id="exampleFormControlInput1" placeholder="Digite o nome do jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Desenvolvedora do Jogo</label>
-                <input type="text" name="desenvolvedora" class="form-control" id="exampleFormControlInput1" placeholder="Digite a desenvolvedora do jogo...">
+                <input type="text" name="desenvolvedora" class="form-control" id="exampleFormControlInput1" placeholder="Digite a desenvolvedora do jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Editora</label>
-                <input type="text" name="editora" class="form-control" id="exampleFormControlInput1" placeholder="Digite a editora do jogo...">
+                <input type="text" name="editora" class="form-control" id="exampleFormControlInput1" placeholder="Digite a editora do jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Data de Lançamento</label>
-                <input type="text" name="dataLancamento" class="form-control" id="exampleFormControlInput1" placeholder="Digite a data de lançamento do jogo...">
+                <input type="text" name="dataLancamento" class="form-control" id="exampleFormControlInput1" placeholder="Digite a data de lançamento do jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Preço do Jogo</label>
-                <input type="number" name="preco" class="form-control" id="exampleFormControlInput1" placeholder="Digite o preço do jogo...">
+                <input type="number" name="preco" class="form-control" id="exampleFormControlInput1" placeholder="Digite o preço do jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Categorias</label>
-                <input type="text" name="categorias" class="form-control" id="exampleFormControlInput1" placeholder="Digite as categorias do jogo...">
+                <input type="text" name="categorias" class="form-control" id="exampleFormControlInput1" placeholder="Digite as categorias do jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Plataformas</label>
-                <input type="text" name="plataformas" class="form-control" id="exampleFormControlInput1" placeholder="Digite as plataformas do jogo...">
+                <input type="text" name="plataformas" class="form-control" id="exampleFormControlInput1" placeholder="Digite as plataformas do jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Modo de Jogo</label>
-                <input type="text" name="modoDeJogo" class="form-control" id="exampleFormControlInput1" placeholder="Digite o modo de jogo...">
+                <input type="text" name="modoDeJogo" class="form-control" id="exampleFormControlInput1" placeholder="Digite o modo de jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Digite o(s) idioma(s) do jogo</label>
-                <input type="text" name="idiomas" class="form-control" id="exampleFormControlInput1" placeholder="Digite o(s) idioma(s) do jogo...">
+                <input type="text" name="idiomas" class="form-control" id="exampleFormControlInput1" placeholder="Digite o(s) idioma(s) do jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Descrição do Jogo</label>
-                <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3" required></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Sobre</label>
-                <textarea class="form-control" name="sobre" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="sobre" id="exampleFormControlTextarea1" rows="3" required></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Requisitos do Sistema</label>
-                <textarea class="form-control" name="requisitos" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="requisitos" id="exampleFormControlTextarea1" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
         <script>
-            document.getElementById('inserir-jogos').addEventListener('click', function() {
+            document.getElementById('cadastrar-jogo').addEventListener('click', function() {
                 let form = document.getElementById('formJogo');
                 if (form.style.display === 'none') {
                     form.style.display = 'block';  

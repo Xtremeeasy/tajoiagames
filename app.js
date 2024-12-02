@@ -53,19 +53,13 @@ app.get("/login", (req, res) => {
 
 app.get("/single-product/:nomeJogo", (req, res) => {
   var nomeJogo = req.params.nomeJogo
-  connection.query('SELECT * FROM Jogos', (err, results) => {
+  connection.query('SELECT j.*, r.comentario FROM Jogos j LEFT JOIN Reviews r ON j.id_jogo = r.id_jogo WHERE j.nome = ?', [nomeJogo], (err, results) => {
     if (err) {
       console.error('Erro ao realizar a consulta:', err);
     }
-    var jogos = results;
-    var idJogo;
-    jogos.forEach(jogo => {
-      if(jogo.nome == nomeJogo){
-        idJogo = jogo.id_jogo;
-        req.jogo = idJogo;
-      }
-    });
-    res.render("index.ejs", { conteudo:'single-product', jogo: jogos[idJogo-1], req: req});
+    
+    let jogo = results[0];
+    res.render("index.ejs", { conteudo:'single-product', jogo: jogo, req: req});
   });
 });
 
@@ -108,10 +102,11 @@ app.post("/logar/mostrar-pedidos", (req, res) => {
       return res.status(500).json({ error: "Erro ao buscar pedidos" });
     }
 
-    // Retorna os dados dos usuários em formato JSON
+    // Retorna os dados dos pedidos em formato JSON
     res.json({ pedidos: results[0] });
   });
 });
+
 // admin
 app.get("/admin", (req, res) => {
   if (req.session.userId){
@@ -180,7 +175,6 @@ app.post("/painel-adm/cadastrar-jogo", (req, res) => {
   let descricao = req.body.descricao;
   let sobre = req.body.sobre;
   let requisitos = req.body.requisitos;
-
   connection.query(`INSERT INTO Jogos (nome, descricao, desenvolvedor, editora, data_lancamento, preco, Categorias, Plataforma, Modo_de_jogo, Idioma, Sobre, Requisitos_de_Sistema) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [nomeJogo, descricao, desenvolvedora, editora, dataLancamento, preco, categorias, plataformas, modoDeJogo, idiomas, sobre, requisitos], (err, results) => {
     if (err) {
       console.log("Erro ao cadastrar jogo", err);
@@ -192,6 +186,19 @@ app.post("/painel-adm/cadastrar-jogo", (req, res) => {
   });
 });
 
+//Carrinho
+app.post("/adicionar-no-carrinho", (req, res) => {
+  let idJogo = req.body.idJogo;
+  console.log(idJogo);
+  connection.query(`INSERT INTO itens_carrinho(id_item, id_carrinho) VALUES(?, ?)`, [idJogo, req.session.userId], (err, results) => {
+    if(err){
+      console.log(err);
+      console.log("Falha ao adicionar o jogo no carrinho.");
+    } else {
+      console.log("Jogo adicionado com sucesso no carrinho: " + req.session.userId);
+    }
+  })
+});
 
 //Avaliações
 app.post("/single-product/avaliar", (req,res) => {

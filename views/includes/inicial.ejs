@@ -147,11 +147,14 @@
 
                 <h3 class="secondary-font text-primary">R$ <%= jogos[i].preco %>
                 </h3>
-
+                
                 <div class="d-flex flex-wrap mt-3">
-                  <a href="javascript:void(0)" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">COMPRAR AGORA</h5>
-                  </a>
+                  <form action="/adicionar-no-carrinho" method="post">
+                    <input type="hidden" name="idJogo" value="<%= jogos[i].id_jogo %>">
+                    <button type="submit" class="btn-cart me-3 px-4 pt-3 pb-3">
+                      <h5 class="text-uppercase m-0">COMPRAR AGORA</h5>
+                    </button>
+                  </form>
                   <a href="javascript:void(0)" class="btn-wishlist px-4 pt-3 ">
                     <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                   </a>
