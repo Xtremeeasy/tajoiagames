@@ -98,7 +98,7 @@
         </script>
     </div>
     <div id="usuarios-container">
-        <form id="formJogo" action="/painel-adm/cadastrar-jogo" method="post" style="display: none">
+        <form id="formJogo" action="/painel-adm/cadastrar-jogo" method="post" style="display: none" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Nome do Jogo</label>
                 <input type="text" name="nomeJogo" class="form-control" id="exampleFormControlInput1" placeholder="Digite o nome do jogo..." required>
@@ -113,7 +113,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Data de Lançamento</label>
-                <input type="text" name="dataLancamento" class="form-control" id="exampleFormControlInput1" placeholder="Digite a data de lançamento do jogo..." required>
+                <input type="date" name="dataLancamento" class="form-control" id="exampleFormControlInput1" placeholder="Digite a data de lançamento do jogo..." required>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Preço do Jogo</label>
@@ -146,6 +146,10 @@
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Requisitos do Sistema</label>
                 <textarea class="form-control" name="requisitos" id="exampleFormControlTextarea1" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="imagemJogo">Imagem do jogo:</label>
+                <input class="mb-3 form-control" accept="image/*" type="file" name="imagemJogo" id="imagemJogo">
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>

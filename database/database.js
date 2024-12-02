@@ -19,7 +19,7 @@ function selectJogos(){
     var jogosResultado = results;
     console.log(jogosResultado);
   });
-  //return jogosResultado;
+
 }
 
 module.exports = {connection,selectJogos};
