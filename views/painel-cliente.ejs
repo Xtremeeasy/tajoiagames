@@ -1,53 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 <%- include('includes/head.ejs') -%>
-<%- include('includes/header.ejs') -%>
-<body>
-    <h1>Seja bem-vindo!</h1>
-    <button id="mostrar-pedidos">Mostrar Pedidos</button>
-    <div id="usuarios-container">
-        <script>
-            document.getElementById('mostrar-pedidos').addEventListener('click', function() {
-                fetch('/logar/mostrar-pedidos', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao buscar usuários');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const container = document.getElementById('usuarios-container');
-                    container.innerHTML = ''; // Limpa o conteúdo anterior
+    <%- include('includes/header.ejs') -%>
 
-                    const table = document.createElement('table');
-                    const thead = document.createElement('thead');
-                    const tbody = document.createElement('tbody');
+        <body>
+            <h1>Seja bem-vindo!</h1>
+            <button id="mostrar-pedidos">Mostrar Pedidos</button>
+            <div id="usuarios-container">
+                <script>
+                    document.getElementById('mostrar-pedidos').addEventListener('click', function () {
+                        fetch('/logar/mostrar-pedidos', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Erro ao buscar usuários');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                const container = document.getElementById('usuarios-container');
+                                container.innerHTML = ''; // Limpa o conteúdo anterior
 
-                    // Cria o cabeçalho da tabela
-                    const headerRow = document.createElement('tr');
-                    headerRow.innerHTML = '<th>ID Pedido</th><th>ID Usuário</th><th>ID Endereço</th><th>Data do Pedido</th><th>Status</th><th>Total</th>'; // Adicione mais colunas conforme necessário
-                    thead.appendChild(headerRow);
+                                const table = document.createElement('table');
+                                const thead = document.createElement('thead');
+                                const tbody = document.createElement('tbody');
 
-                    // Adiciona os usuários à tabela
-                    data.pedidos.forEach(pedido => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `<td>${pedido.id_pedido}</td><td>${pedido.id_usuario}</td><td>${pedido.id_endereco}</td><td>${pedido.data_pedido}</td><td>${pedido.status}</td><td>${pedido.total}</td>`; // Adicione mais colunas conforme necessário
-                        tbody.appendChild(row);
+                                // Cria o cabeçalho da tabela
+                                const headerRow = document.createElement('tr');
+                                headerRow.innerHTML = '<th>ID Pedido</th><th>ID Usuário</th><th>ID Endereço</th><th>Data do Pedido</th><th>Status</th><th>Total</th>'; // Adicione mais colunas conforme necessário
+                                thead.appendChild(headerRow);
+
+                                // Adiciona os usuários à tabela
+                                data.pedidos.forEach(pedido => {
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `<td>${pedido.id_pedido}</td><td>${pedido.id_usuario}</td><td>${pedido.id_endereco}</td><td>${pedido.data_pedido}</td><td>${pedido.status}</td><td>${pedido.total}</td>`; // Adicione mais colunas conforme necessário
+                                    tbody.appendChild(row);
+                                });
+
+                                table.appendChild(thead);
+                                table.appendChild(tbody);
+                                container.appendChild(table);
+                            })
+                            .catch(error => {
+                                console.error('Erro:', error);
+                                alert('Erro ao buscar pedidos');
+                            });
                     });
+                </script>
+            </div>
+            <%- include('includes/footer.ejs') -%>
+        </body>
 
-                    table.appendChild(thead);
-                    table.appendChild(tbody);
-                    container.appendChild(table);
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    alert('Erro ao buscar pedidos');
-                });
-            });
-        </script>
-    </div>
-</body>
-<%- include('includes/footer.ejs') -%>
+</html>

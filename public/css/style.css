@@ -106,14 +106,14 @@ CSS STRUCTURE:
 /* Theme Colors */
 :root {
   --accent-color: #e62848;
-  --dark-color: #070819; 
-  --light-dark-color: #0f3658; 
-  --light-color: #f1ca7f; 
-  --grey-color: #73745c; 
-  --light-grey-color: #809fb2; 
-  --primary-color: #4b6f98; 
+  --dark-color: #070819;
+  --light-dark-color: #0f3658;
+  --light-color: #f1ca7f;
+  --grey-color: #73745c;
+  --light-grey-color: #809fb2;
+  --primary-color: #4b6f98;
   --light-primary-color: #5e81ad;
-  
+
 }
 
 /* Fonts */
@@ -714,7 +714,7 @@ Single Product section style start
   color: #727272;
 }
 
-#bestselling div button{
+#bestselling div button {
   border-radius: 5%;
 }
 
@@ -724,7 +724,7 @@ Single Product section style start
 }
 
 .optionDropdown:hover {
-  background-color: white ;
+  background-color: white;
   color: #F22E52;
   font-weight: bold;
 }
@@ -751,31 +751,36 @@ Single Product section style start
 }
 
 #header {
-  background: linear-gradient(to bottom, #0f3658, #070819); 
+  background: linear-gradient(to bottom, #0f3658, #070819);
   padding: 1em 1em;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
 }
 
 #search-form svg {
   position: absolute;
-  right: 10px; /* Alinha o ícone à direita, dentro da caixa */
+  right: 10px;
+  /* Alinha o ícone à direita, dentro da caixa */
   cursor: pointer;
-  fill: #ffffff; /* Cor do ícone de pesquisa */
+  fill: #ffffff;
+  /* Cor do ícone de pesquisa */
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  position: relative; /* Para posicionar o ícone dentro da barra */
-  border: 1px solid rgba(255, 255, 255, 0.685); /* Borda clara */
+  position: relative;
+  /* Para posicionar o ícone dentro da barra */
+  border: 1px solid rgba(255, 255, 255, 0.685);
+  /* Borda clara */
   border-radius: 20px;
 }
 
 .d-lg-flex {
   display: flex;
   align-items: center;
-  gap: 20px; /* Espaçamento entre os ícones */
+  gap: 20px;
+  /* Espaçamento entre os ícones */
 }
 
 .header-search {
@@ -784,11 +789,12 @@ Single Product section style start
   width: 112px;
   order: 2;
 }
+
 .header-search {
   text-align: center;
 }
 
-.header-search{
+.header-search {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -846,16 +852,16 @@ input[type=search] {
   background-color: #070819;
 }
 
-.content-wrapper .btn{
+.content-wrapper .btn {
   color: white;
-  background: linear-gradient( #0f3658, #070819);
+  background: linear-gradient(#0f3658, #070819);
   border: solid #0f3658;
   padding: 0.5rem 1rem;
 }
 
-.content-wrapper .btn:hover{
+.content-wrapper .btn:hover {
   color: white;
-  background: linear-gradient( #F22E52, #070819);
+  background: linear-gradient(#F22E52, #070819);
   border: solid #F22E52;
 }
 
@@ -877,7 +883,7 @@ input[type=search] {
   background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
   position: absolute;
   top: -2px;
-  left:-2px;
+  left: -2px;
   background-size: 400%;
   z-index: -1;
   filter: blur(5px);
@@ -910,9 +916,17 @@ input[type=search] {
 }
 
 @keyframes glowing {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .card-title {
@@ -963,10 +977,7 @@ input[type=search] {
 }
 
 .borda {
-  filter: drop-shadow(2px 2px 0 white)
-            drop-shadow(-2px 2px 0 white)
-            drop-shadow(2px -2px 0 white)
-            drop-shadow(-2px -2px 0 white);
+  filter: drop-shadow(2px 2px 0 white) drop-shadow(-2px 2px 0 white) drop-shadow(2px -2px 0 white) drop-shadow(-2px -2px 0 white);
 }
 
 .game-card {
@@ -991,9 +1002,9 @@ input[type=search] {
 
 .icone-redondo {
   width: 50px;
-  height: 50px; 
-  border-radius: 50%; 
-  object-fit: cover; 
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 #footer .nav-link {
@@ -1005,23 +1016,28 @@ input[type=search] {
   background: #4b6f98;
 }
 
-.login-option:hover{
+.login-option:hover {
   color: white;
   background: #5e81ad;
 }
 
 
-#usuarios-container, #pedidos-container, #jogos-container{
-  margin: 0 37.5%; /* Espaçamento acima do contêiner */
+#usuarios-container,
+#pedidos-container,
+#jogos-container {
+  margin: 0 37.5%;
+  /* Espaçamento acima do contêiner */
 }
 
-#mostrar-usuarios, #mostrar-pedidos{
+#mostrar-usuarios,
+#mostrar-pedidos {
   width: 300px;
   margin: 0 42%;
 }
 
 table {
-  width: 40%; /* Ajuste a largura conforme necessário */
+  width: 40%;
+  /* Ajuste a largura conforme necessário */
   border-collapse: collapse;
   margin-top: 20px;
   background-color: #fff;
@@ -1032,7 +1048,8 @@ table {
 }
 
 
-th, td {
+th,
+td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -1053,7 +1070,7 @@ tr:hover {
   appearance: none;
 }
 
-.checkbox-wrapper-1 [type="checkbox"].substituted + label:before {
+.checkbox-wrapper-1 [type="checkbox"].substituted+label:before {
   content: "";
   display: inline-block;
   height: 1em;
@@ -1064,80 +1081,75 @@ tr:hover {
   box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em inset,
     0 0 0 0.07em transparent inset;
   border-radius: 0.2em;
-  background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xml:space="preserve" fill="white" viewBox="0 0 9 9"><rect x="0" y="4.3" transform="matrix(-0.707 -0.7072 0.7072 -0.707 0.5891 10.4702)" width="4.3" height="1.6" /><rect x="2.2" y="2.9" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 12.1877 2.9833)" width="6.1" height="1.7" /></svg>')
-      no-repeat center,
+  background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xml:space="preserve" fill="white" viewBox="0 0 9 9"><rect x="0" y="4.3" transform="matrix(-0.707 -0.7072 0.7072 -0.707 0.5891 10.4702)" width="4.3" height="1.6" /><rect x="2.2" y="2.9" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 12.1877 2.9833)" width="6.1" height="1.7" /></svg>') no-repeat center,
     white;
   background-size: 0;
   will-change: color, border, background, background-size, box-shadow;
   transform: translate3d(0, 0, 0);
   transition: color 0.1s, border 0.1s, background 0.15s, box-shadow 0.1s;
 }
-.checkbox-wrapper-1 [type="checkbox"].substituted:enabled:active + label:before,
-.checkbox-wrapper-1
-  [type="checkbox"].substituted:enabled
-  + label:active:before {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted:enabled:active+label:before,
+.checkbox-wrapper-1 [type="checkbox"].substituted:enabled+label:active:before {
   box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em transparent inset,
     0 0 0 0.07em rgba(0, 0, 0, 0.1) inset;
   background-color: #f0f0f0;
 }
-.checkbox-wrapper-1 [type="checkbox"].substituted:checked + label:before {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted:checked+label:before {
   background-color: #3b99fc;
   background-size: 0.75em;
   color: rgba(0, 0, 0, 0.075);
 }
-.checkbox-wrapper-1
-  [type="checkbox"].substituted:checked:enabled:active
-  + label:before,
-.checkbox-wrapper-1
-  [type="checkbox"].substituted:checked:enabled
-  + label:active:before {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted:checked:enabled:active+label:before,
+.checkbox-wrapper-1 [type="checkbox"].substituted:checked:enabled+label:active:before {
   background-color: #0a7ffb;
   color: rgba(0, 0, 0, 0.275);
 }
-.checkbox-wrapper-1 [type="checkbox"].substituted:focus + label:before {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted:focus+label:before {
   box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em transparent inset,
     0 0 0 0.07em rgba(0, 0, 0, 0.1) inset, 0 0 0 3.3px rgba(65, 159, 255, 0.55),
     0 0 0 5px rgba(65, 159, 255, 0.3);
 }
-.checkbox-wrapper-1 [type="checkbox"].substituted:focus:active + label:before,
-.checkbox-wrapper-1 [type="checkbox"].substituted:focus + label:active:before {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted:focus:active+label:before,
+.checkbox-wrapper-1 [type="checkbox"].substituted:focus+label:active:before {
   box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em transparent inset,
     0 0 0 0.07em rgba(0, 0, 0, 0.1) inset, 0 0 0 3.3px rgba(65, 159, 255, 0.55),
     0 0 0 5px rgba(65, 159, 255, 0.3);
 }
-.checkbox-wrapper-1 [type="checkbox"].substituted:disabled + label:before {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted:disabled+label:before {
   opacity: 0.5;
 }
 
-.checkbox-wrapper-1 [type="checkbox"].substituted.dark + label:before {
+.checkbox-wrapper-1 [type="checkbox"].substituted.dark+label:before {
   color: rgba(255, 255, 255, 0.275);
   background-color: #222;
   background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xml:space="preserve" fill="rgba(34, 34, 34, 0.999)" viewBox="0 0 9 9"><rect x="0" y="4.3" transform="matrix(-0.707 -0.7072 0.7072 -0.707 0.5891 10.4702)" width="4.3" height="1.6" /><rect x="2.2" y="2.9" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 12.1877 2.9833)" width="6.1" height="1.7" /></svg>');
 }
-.checkbox-wrapper-1
-  [type="checkbox"].substituted.dark:enabled:active
-  + label:before,
-.checkbox-wrapper-1
-  [type="checkbox"].substituted.dark:enabled
-  + label:active:before {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted.dark:enabled:active+label:before,
+.checkbox-wrapper-1 [type="checkbox"].substituted.dark:enabled+label:active:before {
   background-color: #444;
   box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em transparent inset,
     0 0 0 0.07em rgba(255, 255, 255, 0.1) inset;
 }
-.checkbox-wrapper-1 [type="checkbox"].substituted.dark:checked + label:before {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted.dark:checked+label:before {
   background-color: #a97035;
   color: rgba(255, 255, 255, 0.075);
 }
-.checkbox-wrapper-1
-  [type="checkbox"].substituted.dark:checked:enabled:active
-  + label:before,
-.checkbox-wrapper-1
-  [type="checkbox"].substituted.dark:checked:enabled
-  + label:active:before {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted.dark:checked:enabled:active+label:before,
+.checkbox-wrapper-1 [type="checkbox"].substituted.dark:checked:enabled+label:active:before {
   background-color: #c68035;
   color: rgba(0, 0, 0, 0.275);
 }
-.checkbox-wrapper-1 [type="checkbox"].substituted + label {
+
+.checkbox-wrapper-1 [type="checkbox"].substituted+label {
   -webkit-user-select: none;
   user-select: none;
 }
@@ -1155,8 +1167,18 @@ tr:hover {
 }
 
 .productBorda {
-    filter: drop-shadow(1px 1px 0 #6d6b6b)
-            drop-shadow(-1px 1px 0 #6d6b6b)
-            drop-shadow(1px -1px 0 #6d6b6b)
-            drop-shadow(-1px -1px 0 #6d6b6b);
+  filter: drop-shadow(1px 1px 0 #6d6b6b) drop-shadow(-1px 1px 0 #6d6b6b) drop-shadow(1px -1px 0 #6d6b6b) drop-shadow(-1px -1px 0 #6d6b6b);
+}
+
+.loginADM {
+  width: 50%;
+  margin: 0 25%;
+
+  & input{
+    font-size: larger;
+  }
+
+  & input:focus {
+    font-weight: bold;
+  }
 }

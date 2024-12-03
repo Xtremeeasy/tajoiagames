@@ -1,27 +1,32 @@
-<%- include('includes/head.ejs') -%>
-<%- include('includes/header.ejs') -%>
-<body>
-  <h1>LOGIN DE ADM</h1>
-    <form id="form1" class="form-group flex-wrap" action="/admin/login" method="POST" >
-      <div class="form-input col-lg-12 my-4">
-        <input type="text" id="email" name="email"
-          placeholder="Digite seu endereço de Email" class="form-control mb-3 p-4" />
-        <input type="password" id="senha" placeholder="Digite sua Senha"
-          class="form-control mb-3 p-4" aria-describedby="passwordHelpBlock" name="senha" />
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-        <label class="py-3 d-flex flex-wrap justify-content-between">
-          <div class="checkbox-wrapper-1">
-            <input id="example-1" type="checkbox" class="d-inline substituted"
-              aria-hidden="false" />
-            <label class="label-body fs-5" for="example-1">Salvar Login</label>
+<%- include('includes/head.ejs') -%>
+  <%- include('includes/header.ejs') -%>
+
+    <body>
+      <div class="loginADM">
+        <h1>LOGIN DE ADM</h1>
+        <form id="form1" class="form-group flex-wrap" action="/admin/login" method="POST">
+          <div class="form-input col-lg-12 my-4">
+            <input type="text" id="email" name="email" placeholder="Digite seu endereço de Email"
+              class="form-control mb-3 p-4" />
+            <input type="password" id="senha" placeholder="Digite sua Senha" class="form-control mb-3 p-4"
+              aria-describedby="passwordHelpBlock" name="senha" />
+
+            <label class="py-3 d-flex flex-wrap justify-content-between">
+              <div class="checkbox-wrapper-1">
+                <input id="example-1" type="checkbox" class="d-inline substituted" aria-hidden="false" />
+                <label class="label-body fs-5" for="example-1">Salvar Login</label>
+              </div>
+            </label>
+            <div class="d-grid my-3">
+              <button class="btn btn-dark btn-lg rounded-1" type="submit" value="Entrar">Entrar</button>
+            </div>
           </div>
-        </label>
-        <div class="d-grid my-3">
-          <button class="btn btn-dark btn-lg rounded-1" type="submit" value="Entrar">Entrar</button>
-        </div>
+        </form>
       </div>
-    </form>
-  </div>
-  </div>
-</body>
-<%- include('includes/footer.ejs') -%>
+      <%- include('includes/footer.ejs') -%>
+    </body>
+
+</html>
