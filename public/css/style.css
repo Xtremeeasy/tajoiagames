@@ -1011,7 +1011,7 @@ input[type=search] {
 }
 
 
-#usuarios-container{
+#usuarios-container, #pedidos-container, #jogos-container{
   margin: 0 37.5%; /* Espaçamento acima do contêiner */
 }
 

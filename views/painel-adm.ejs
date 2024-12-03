@@ -12,7 +12,7 @@
             <button class="btn btn-success w-50 py-3" id="cadastrar-jogo">Cadastrar Jogo</button>
         </div>
     </div>
-    <div id="usuarios-container">
+    <div id="usuarios-container" style="display: none;">
         <script>
             document.getElementById('mostrar-usuarios').addEventListener('click', function() {
                 fetch('/painel-adm/mostrar-usuarios', {
@@ -58,7 +58,7 @@
             });
         </script>
     </div>
-    <div id="usuarios-container">
+    <div id="pedidos-container" style="display: none;">
         <script>
             document.getElementById('mostrar-pedidos').addEventListener('click', function() {
                 fetch('/painel-adm/mostrar-pedidos', {
@@ -74,7 +74,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    const container = document.getElementById('usuarios-container');
+                    const container = document.getElementById('pedidos-container');
                     container.innerHTML = ''; // Limpa o conteúdo anterior
     
                     const table = document.createElement('table');
@@ -99,12 +99,12 @@
                 })
                 .catch(error => {
                     console.error('Erro:', error);
-                    alert('Erro ao buscar usuários');
+                    alert('Erro ao buscar pedidos');
                 });
             });
         </script>
     </div>
-    <div id="usuarios-container">
+    <div id="jogos-container">
         <br>
         <form id="formJogo" action="/painel-adm/cadastrar-jogo" method="post" style="display: none" enctype="multipart/form-data">
             <div class="form-group">
@@ -171,6 +171,26 @@
                     form.style.display = 'block';  
                 } else {
                     form.style.display = 'none';
+                }
+            });
+        </script>
+        <script>
+            document.getElementById('mostrar-usuarios').addEventListener('click', function() {
+                let container = document.getElementById('usuarios-container');
+                if (container.style.display === 'none') {
+                    container.style.display = 'block';  
+                } else {
+                    container.style.display = 'none';
+                }
+            });
+        </script>
+        <script>
+            document.getElementById('mostrar-pedidos').addEventListener('click', function() {
+                let container = document.getElementById('pedidos-container');
+                if (container.style.display === 'none') {
+                    container.style.display = 'block';  
+                } else {
+                    container.style.display = 'none';
                 }
             });
         </script>
