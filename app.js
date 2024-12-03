@@ -34,7 +34,7 @@ const storage = multer.diskStorage({
         if (error) {
             return cb(error); // Passa o erro para o callback
         }
-        cb(null, "game_card-" + count + path.extname(file.originalname)); // Nome do arquivo
+        cb(null, "game_card-" + count + ".png"); // Nome do arquivo
     });
   } 
 });

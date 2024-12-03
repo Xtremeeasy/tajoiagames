@@ -1,8 +1,8 @@
 const MySQL = require('mysql2');
 const connection = MySQL.createConnection({
     host: 'localhost',
-    user: 'root',
-    password: '',
+    user: 'novo_usuario',
+    password: 'senha_forte',
     host: 'localhost',
     database: 'tajoiagames'
 });

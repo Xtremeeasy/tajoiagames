@@ -43,7 +43,7 @@
                     // Adiciona os usuários à tabela
                     data.usuarios.forEach(usuario => {
                         const row = document.createElement('tr');
-                        row.innerHTML = `<td>${usuario.id_usuario}</td><td>${usuario.email}</td><td>${usuario.nome}</td><td>${usuario.status}</td>`; // Adicione mais colunas conforme necessário
+                        row.innerHTML = `<td>${usuario.id_usuario}</td><td>${usuario.email}</td><td>${usuario.nomeUsuario}</td><td>${usuario.status}</td>`; // Adicione mais colunas conforme necessário
                         tbody.appendChild(row);
                     });
 
