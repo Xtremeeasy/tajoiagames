@@ -7,15 +7,118 @@
             <div class="container text-center mt-5">
                 <h1>PAINEL DE ADM</h1>
                 <div class="d-flex flex-column align-items-center gap-3 mt-4">
-                    <!-- Botão vermelho -->
                     <button class="btn btn-danger w-50 py-3" id="mostrar-usuarios">Mostrar Usuários (NÃO ADMS)</button>
-                    <!-- Botão amarelo -->
                     <button class="btn btn-warning w-50 py-3" id="mostrar-pedidos">Mostrar Pedidos</button>
-                    <!-- Botão verde -->
                     <button class="btn btn-success w-50 py-3" id="cadastrar-jogo">Cadastrar Jogo</button>
                     <button class="btn btn-success w-50 py-3" id="alterar-jogo">Alterar Jogo</button>
+                    <button class="btn btn-primary w-50 py-3" id="deletar-jogo">Deletar Jogo</button>
                 </div>
             </div>
+
+            <div id="jogos-container" class="mt-3">
+                <form id="formDeletarJogo" style="display: none;">
+                    <div class="form-group">
+                        <label for="idJogo">ID do Jogo</label>
+                        <input type="number" name="idJogo" class="form-control" id="idJogo" placeholder="Digite o ID do jogo..." required>
+                    </div>
+                    <button type="button" id="buscarJogo" class="btn btn-info mt-3">Buscar Jogo</button>
+                    <p id="nomeJogo" class="mt-2"></p>
+                    <button type="button" id="confirmarDelecao" class="btn btn-danger mt-3" style="display: none;">Deletar</button>
+                </form>
+                <div id="erroMensagem" style="color: red; display: none;"></div>
+            </div>
+        
+            <script>
+                // Exibir o formulário de deletar jogo
+                document.getElementById('deletar-jogo').addEventListener('click', function () {
+                    const form = document.getElementById('formDeletarJogo');
+                    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                    document.getElementById('nomeJogo').innerText = '';
+                    document.getElementById('confirmarDelecao').style.display = 'none';
+                });
+            
+                // Variável global para armazenar o ID do jogo localmente
+                let idJogoLocal = null;
+
+                // Buscar o jogo pelo ID para exibir nome e permitir a exclusão
+                document.getElementById('buscarJogo').addEventListener('click', function () {
+                    const idJogo = document.getElementById('idJogo').value;
+
+                    if (!idJogo) {
+                        alert('Por favor, insira o ID do jogo.');
+                        return;
+                    }
+
+                    fetch(`/painel-adm/buscar-jogo/${idJogo}`, {
+                        method: 'GET',
+                        headers: { 'Content-Type': 'application/json' }
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Erro ao buscar jogo.');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (!data.nome) {
+                            alert('Jogo não encontrado.');
+                            return;
+                        }
+
+                        // Exibe o nome do jogo encontrado
+                        document.getElementById('nomeJogo').innerText = `Nome do Jogo: ${data.nome}`;
+                        // Mostra o botão de exclusão
+                        document.getElementById('confirmarDelecao').style.display = 'block';
+
+                        // Não é mais necessário, pois vamos pegar o ID diretamente do input
+                        // idJogoLocal = data.id;
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        alert('Erro ao buscar jogo.');
+                    });
+                });
+
+                // Confirmar a exclusão e realizar o pedido DELETE
+                document.getElementById('confirmarDelecao').addEventListener('click', function () {
+                    // Pegar o ID diretamente do input
+                    const idJogo = document.getElementById('idJogo').value;
+
+                    // Verificar se o ID foi fornecido
+                    if (!idJogo) {
+                        alert('ID do jogo não encontrado.');
+                        return;
+                    }
+
+                    console.log('ID do jogo antes de excluir:', idJogo);
+
+                    if (!confirm('Tem certeza que deseja excluir este jogo?')) return;
+
+                    // Enviar pedido DELETE para excluir o jogo
+                    fetch('/painel-adm/deletar-jogo', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ idJogo: idJogo }) // Passa o ID diretamente do input
+                    })
+                    .then(response => {
+                        // Checar se a resposta foi bem-sucedida
+                        if (!response.ok) {
+                            return response.json().then(errorData => {
+                                throw new Error(errorData.message || 'Erro ao excluir jogo');
+                            });
+                        }
+                        alert('Jogo excluído com sucesso!');
+                        document.getElementById('formDeletarJogo').reset();
+                        document.getElementById('nomeJogo').innerText = '';
+                        document.getElementById('confirmarDelecao').style.display = 'none';
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        alert('Erro ao excluir jogo: ' + error.message);
+                    });
+                });
+            </script>
+            
             <div id="usuarios-container" style="display: none;">
                 <script>
                     document.getElementById('mostrar-usuarios').addEventListener('click', function () {

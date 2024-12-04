@@ -1,10 +1,11 @@
 const express = require("express");
-const session = require('express-session'); //Para conseguir utilizar sessões de usuários
+const session = require('express-session'); //Para conseguir utilizar sessÃµes de usuÃ¡rios
 const multer = require('multer');
 const path = require('path');
 const app = express();
 const { connection, selectJogos } = require("./database/database");
 const porta = 9999;
+const bodyParser = require('body-parser'); // caso precise de mais controle
 
 app.use(session({
   secret: '9b9112b921a5a738f118868099d178053358d588403f3015d45d7369bb469307', //Chave secreta
@@ -22,12 +23,12 @@ connection.connect((err) => {
   console.log("Conectado ao banco de dados MySQL!");
 });
 
-//arquivos estáticos
+//arquivos estÃ¡ticos
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, path.join(__dirname, 'public/images')); // Pasta onde as imagens serão salvas
+      cb(null, path.join(__dirname, 'public/images')); // Pasta onde as imagens serÃ£o salvas
   },
   filename: (req, file, cb) => {
     numeroDeJogos((error, count) => {
@@ -55,7 +56,7 @@ numeroDeJogos((error, count) => {
   if (error) {
       console.error('Erro ao contar os jogos:', error);
   } else {
-      console.log('Número de jogos:', count);
+      console.log('NÃºmero de jogos:', count);
   }
 })
 
@@ -110,7 +111,7 @@ app.post("/logar", (req, res) => {
     }
 
     if (results.length > 0) {
-      req.session.userId = results[0].id_usuario; //Atribuindo o id do usuário à variável de sessão
+      req.session.userId = results[0].id_usuario; //Atribuindo o id do usuÃ¡rio Ã  variÃ¡vel de sessÃ£o
       req.session.adm = results[0].administrador
       if(req.session.adm == 1){
         res.render("painel-adm.ejs");
@@ -174,11 +175,11 @@ app.post("/admin/login", (req, res) => {
 app.post("/painel-adm/mostrar-usuarios", (req, res) => {
   connection.query(`CALL procedure_usuarios_registrados`, (err, results) => {
     if (err) {
-      console.log("Erro ao buscar usuários", err);
-      return res.status(500).json({ error: "Erro ao buscar usuários" });
+      console.log("Erro ao buscar usuÃ¡rios", err);
+      return res.status(500).json({ error: "Erro ao buscar usuÃ¡rios" });
     }
 
-    // Retorna os dados dos usuários em formato JSON
+    // Retorna os dados dos usuÃ¡rios em formato JSON
     res.json({ usuarios: results[0] });
   });
 });
@@ -190,7 +191,7 @@ app.post("/painel-adm/mostrar-pedidos", (req, res) => {
       return res.status(500).json({ error: "Erro ao buscar pedidos" });
     }
 
-    // Retorna os dados dos usuários em formato JSON
+    // Retorna os dados dos usuÃ¡rios em formato JSON
     res.json({ pedidos: results[0] });
   });
 });
@@ -225,7 +226,7 @@ app.post("/painel-adm/cadastrar-jogo",upload.single('imagemJogo'), (req, res) =>
     // Prepara o nome da imagem usando a contagem de jogos
     const imagem = "images/game_card-" + count + ".png"; // ou o formato correto da imagem
 
-    // Executa a consulta de inserção
+    // Executa a consulta de inserÃ§Ã£o
     connection.query(`INSERT INTO Jogos (nome, descricao, desenvolvedor, editora, data_lancamento, preco, Categorias, Plataforma, Modo_de_jogo, Idioma, Sobre, Requisitos_de_Sistema, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
     [nomeJogo, descricao, desenvolvedora, editora, dataLancamento, preco, categorias, plataformas, modoDeJogo, idiomas, sobre, requisitos, imagem], 
     (err, results) => {
@@ -267,6 +268,43 @@ app.post("/painel-adm/alterar-jogo",upload.single('imagemJogo'), (req, res) => {
     });
 });
 
+//buscar jogo
+app.get('/painel-adm/buscar-jogo/:id', (req, res) => {
+  const idJogo = req.params.id;
+  connection.query('SELECT * FROM Jogos WHERE id_jogo = ?', [idJogo], (err, results) => {
+      if (err) {
+          console.log('Erro ao buscar jogo:', err);
+          return res.status(500).json({ error: 'Erro ao buscar jogo' });
+      }
+      if (results.length === 0) {
+          return res.status(404).json({ message: 'Jogo nÃ£o encontrado' });
+      }
+      return res.json(results[0]); // Retorna os dados do jogo encontrado
+  });
+});
+
+// Middleware para processar o corpo JSON
+app.use(express.json()); // Isso Ã© necessÃ¡rio para ler JSON enviado no corpo da requisiÃ§Ã£o
+
+app.delete('/painel-adm/deletar-jogo', (req, res) => {
+    const { idJogo } = req.body; // Acessando o idJogo enviado no corpo
+console.log(idJogo);
+    // Verifica se o idJogo foi fornecido
+    if (!idJogo) {
+        return res.status(400).json({ message: 'ID do jogo nÃ£o fornecido' });
+    }
+
+    // LÃ³gica para excluir o jogo do banco de dados
+    connection.query(`DELETE FROM Jogos WHERE id_jogo = ?`, [idJogo], (err, results) => {
+        if (err) {
+            console.log("Erro ao excluir jogo", err);
+            return res.status(500).json({ message: 'Erro ao excluir o jogo.' });
+        } else {
+            res.status(200).json({ message: 'Jogo excluÃ­do com sucesso!' });
+            console.log("Jogo excluÃ­do com sucesso!");
+        }
+    });
+});
 
 //Carrinho
 app.post("/adicionar-no-carrinho", (req, res) => {
@@ -282,7 +320,7 @@ app.post("/adicionar-no-carrinho", (req, res) => {
   })
 });
 
-//Avaliações
+//AvaliaÃ§Ãµes
 app.post("/single-product/avaliar", (req,res) => {
   let comentario = req.body.comentario;
   let id_usuario = req.session.userId;
@@ -296,7 +334,6 @@ app.post("/single-product/avaliar", (req,res) => {
   });
   res.redirect(`/single-product/${nome}`)
 });
-
 
 app.listen(porta, () => {
   console.log(`Servidor funcionando na porta: ${porta}`);
