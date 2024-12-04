@@ -13,6 +13,7 @@
                     <button class="btn btn-warning w-50 py-3" id="mostrar-pedidos">Mostrar Pedidos</button>
                     <!-- Botão verde -->
                     <button class="btn btn-success w-50 py-3" id="cadastrar-jogo">Cadastrar Jogo</button>
+                    <button class="btn btn-success w-50 py-3" id="alterar-jogo">Alterar Jogo</button>
                 </div>
             </div>
             <div id="usuarios-container" style="display: none;">
@@ -181,37 +182,122 @@
                     </div>
                     <button type="submit" class="btn btn-primary mt-5">Cadastrar</button>
                 </form>
-                <script>
-                    document.getElementById('cadastrar-jogo').addEventListener('click', function () {
-                        let form = document.getElementById('formJogo');
-                        if (form.style.display === 'none') {
-                            form.style.display = 'block';
-                        } else {
-                            form.style.display = 'none';
-                        }
-                    });
-                </script>
-                <script>
-                    document.getElementById('mostrar-usuarios').addEventListener('click', function () {
-                        let container = document.getElementById('usuarios-container');
-                        if (container.style.display === 'none') {
-                            container.style.display = 'block';
-                        } else {
-                            container.style.display = 'none';
-                        }
-                    });
-                </script>
-                <script>
-                    document.getElementById('mostrar-pedidos').addEventListener('click', function () {
-                        let container = document.getElementById('pedidos-container');
-                        if (container.style.display === 'none') {
-                            container.style.display = 'block';
-                        } else {
-                            container.style.display = 'none';
-                        }
-                    });
-                </script>
             </div>
+
+
+            <div id="jogos-container">
+                <br>
+                <form id="formJogoAlterar" action="/painel-adm/alterar-jogo" method="post" style="display: none"
+                    enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Id do Jogo</label>
+                        <input type="number" name="idJogoAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite o nome do jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nome do Jogo</label>
+                        <input type="text" name="nomeJogoAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite o nome do jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Desenvolvedora do Jogo</label>
+                        <input type="text" name="desenvolvedoraAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite a desenvolvedora do jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Editora</label>
+                        <input type="text" name="editoraAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite a editora do jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Data de Lançamento</label>
+                        <input type="date" name="dataLancamentoAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite a data de lançamento do jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Preço do Jogo</label>
+                        <input type="number" name="precoAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite o preço do jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Categorias</label>
+                        <input type="text" name="categoriasAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite as categorias do jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Plataformas</label>
+                        <input type="text" name="plataformasAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite as plataformas do jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Modo de Jogo</label>
+                        <input type="text" name="modoDeJogoAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite o modo de jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Digite o(s) idioma(s) do jogo</label>
+                        <input type="text" name="idiomasAlterar" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Digite o(s) idioma(s) do jogo..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Descrição do Jogo</label>
+                        <textarea class="form-control" name="descricaoAlterar" id="exampleFormControlTextarea1" rows="3"
+                            required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Sobre</label>
+                        <textarea class="form-control" name="sobreAlterar" id="exampleFormControlTextarea1" rows="3"
+                            required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Requisitos do Sistema</label>
+                        <textarea class="form-control" name="requisitosAlterar" id="exampleFormControlTextarea1" rows="3"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-5">Alterar</button>
+                </form>
+            </div>
+
+            <script>
+                document.getElementById('alterar-jogo').addEventListener('click', function () {
+                    let form = document.getElementById('formJogoAlterar');
+                    if (form.style.display === 'none') {
+                        form.style.display = 'block';
+                    } else {
+                        form.style.display = 'none';
+                    }
+                });
+            </script>
+            <script>
+                document.getElementById('cadastrar-jogo').addEventListener('click', function () {
+                    let form = document.getElementById('formJogo');
+                    if (form.style.display === 'none') {
+                        form.style.display = 'block';
+                    } else {
+                        form.style.display = 'none';
+                    }
+                });
+            </script>
+            <script>
+                document.getElementById('mostrar-usuarios').addEventListener('click', function () {
+                    let container = document.getElementById('usuarios-container');
+                    if (container.style.display === 'none') {
+                        container.style.display = 'block';
+                    } else {
+                        container.style.display = 'none';
+                    }
+                });
+            </script>
+            <script>
+                document.getElementById('mostrar-pedidos').addEventListener('click', function () {
+                    let container = document.getElementById('pedidos-container');
+                    if (container.style.display === 'none') {
+                        container.style.display = 'block';
+                    } else {
+                        container.style.display = 'none';
+                    }
+                });
+            </script>
             <%- include('includes/footer.ejs') -%>
         </body>
 

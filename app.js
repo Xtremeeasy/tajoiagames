@@ -223,7 +223,7 @@ app.post("/painel-adm/cadastrar-jogo",upload.single('imagemJogo'), (req, res) =>
     }
 
     // Prepara o nome da imagem usando a contagem de jogos
-    const imagem = "images/game_card-" + count + path.extname(req.file.originalname); // ou o formato correto da imagem
+    const imagem = "images/game_card-" + count + ".png"; // ou o formato correto da imagem
 
     // Executa a consulta de inserção
     connection.query(`INSERT INTO Jogos (nome, descricao, desenvolvedor, editora, data_lancamento, preco, Categorias, Plataforma, Modo_de_jogo, Idioma, Sobre, Requisitos_de_Sistema, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
@@ -239,6 +239,34 @@ app.post("/painel-adm/cadastrar-jogo",upload.single('imagemJogo'), (req, res) =>
     });
   });
 });
+//alterar jogo
+app.post("/painel-adm/alterar-jogo",upload.single('imagemJogo'), (req, res) => {
+  let idJogo = req.body.idJogoAlterar;
+  let nomeJogo = req.body.nomeJogoAlterar;
+  let desenvolvedora = req.body.desenvolvedoraAlterar;
+  let editora = req.body.editoraAlterar;
+  let dataLancamento = req.body.dataLancamentoAlterar;
+  let preco = req.body.precoAlterar;
+  let categorias = req.body.categoriasAlterar;
+  let plataformas = req.body.plataformasAlterar;
+  let modoDeJogo = req.body.modoDeJogoAlterar;
+  let idiomas = req.body.idiomasAlterar;
+  let descricao = req.body.descricaoAlterar;
+  let sobre = req.body.sobreAlterar;
+  let requisitos = req.body.requisitosAlterar;
+  connection.query(`UPDATE Jogos SET nome=?, descricao=?, desenvolvedor=?, editora=?, data_lancamento=?, preco=?, Categorias=?, Plataforma=?, Modo_de_jogo=?, Idioma=?, Sobre=?, Requisitos_de_Sistema=? WHERE id_jogo=?`, 
+    [nomeJogo, descricao, desenvolvedora, editora, dataLancamento, preco, categorias, plataformas, modoDeJogo, idiomas, sobre, requisitos, idJogo], 
+    (err, results) => {
+        if (err) {
+            console.log("Erro ao alterar jogo", err);
+            return res.status(500).json({ error: "Erro ao alterar jogo" });
+        } else {
+          res.render("painel-adm.ejs");
+          console.log("Jogo alterado com sucesso!");
+        }
+    });
+});
+
 
 //Carrinho
 app.post("/adicionar-no-carrinho", (req, res) => {
